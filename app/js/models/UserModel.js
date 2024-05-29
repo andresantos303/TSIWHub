@@ -5,7 +5,7 @@ export function init() {
   if (localStorage.users) {
     const tempUsers = JSON.parse(localStorage.users);
     for(let user of tempUsers) {
-      users.push(new User(user.username, user.password));
+      users.push(new User(user.username, user.email, user.password));
     }
   } else {
     users = [];
@@ -67,11 +67,13 @@ function getNextId() {
 class User {
   id = null;
   username = "";
+  email= "";
   password = "";
 
-  constructor(username, password) {
+  constructor(username, email, password) {
     this.id = getNextId();
     this.username = username;
+    this.email = email;
     this.password = password;
   }
 }
