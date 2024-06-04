@@ -1,5 +1,3 @@
-import { findUser } from "./UserModel.js";
-
 let noticias = [];
 
 // CARREGAR NOTICIAS DA LOCALSTORAGE
@@ -7,7 +5,7 @@ export function init() {
   if(localStorage.noticias) {
     const tempNews = JSON.parse(localStorage.noticias);
     for(let noticia of tempNews) {
-      noticias.push(new Noticia(noticia.title, noticia.genre, noticia.image, noticia.subTitle, noticia.desc, noticia.likes, noticia.id));
+      noticias.push(new Noticia(noticia.title, noticia.genre, noticia.image, noticia.subTitle, noticia.desc, noticia.views, noticia.id));
     }
   } else {
     noticias = [];
@@ -15,11 +13,11 @@ export function init() {
 }
 
 // ADICIONAR Noticia
-export function add(title, genre, image, subTitle, desc, likes, id) {
+export function add(title, genre, image, subTitle, desc, views, id) {
   if (noticias.some((noticia) => noticia.title === title)) {
     throw Error(`A Noticia com o título "${title}" já existe!`);
   } else {
-    noticias.push(new Noticia(title, genre, image, subTitle, desc, likes, id));
+    noticias.push(new Noticia(title, genre, image, subTitle, desc, views, id));
     localStorage.setItem("noticias", JSON.stringify(noticias));
   }
 }
@@ -54,7 +52,7 @@ export function getNoticias(filterTitle = "", filterGenre = "", isSorted = false
     ? filteredNews.sort((a, b) => a.title.localeCompare(b.title))
     : filteredNews;
 
-  return filteredNews;
+  return filteredNews.reverse();
 }
 
 function getNextId() {
@@ -71,17 +69,16 @@ class Noticia {
   image = "";
   subTitle = "";
   desc = "";
-  likes = "";
-  userId = "";	
+  views = "";
 
-  constructor(title, genre, image, subTitle, desc, likes) {
+  constructor(title, genre, image, subTitle, desc, views) {
     this.id = getNextId();
     this.title = title;
     this.genre = genre;
     this.image = image;
     this.subTitle = subTitle;
     this.desc = desc;
-    this.likes = likes;
+    this.views = views;
   }
 
 }
