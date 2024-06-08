@@ -5,7 +5,7 @@ export function init() {
   if(localStorage.noticias) {
     const tempNews = JSON.parse(localStorage.noticias);
     for(let noticia of tempNews) {
-      noticias.push(new Noticia(noticia.title, noticia.genre, noticia.image, noticia.subTitle, noticia.desc, noticia.views, noticia.id));
+      noticias.push(new Noticia(noticia.title, noticia.genre, noticia.image, noticia.subTitle, noticia.desc, noticia.date, noticia.id));
     }
   } else {
     noticias = [];
@@ -13,11 +13,11 @@ export function init() {
 }
 
 // ADICIONAR Noticia
-export function add(title, genre, image, subTitle, desc, views, id) {
+export function add(title, genre, image, subTitle, desc, date, id) {
   if (noticias.some((noticia) => noticia.title === title)) {
     throw Error(`A Noticia com o título "${title}" já existe!`);
   } else {
-    noticias.push(new Noticia(title, genre, image, subTitle, desc, views, id));
+    noticias.push(new Noticia(title, genre, image, subTitle, desc, date, id));
     localStorage.setItem("noticias", JSON.stringify(noticias));
   }
 }
@@ -69,16 +69,16 @@ class Noticia {
   image = "";
   subTitle = "";
   desc = "";
-  views = "";
+  date = "";
 
-  constructor(title, genre, image, subTitle, desc, views) {
+  constructor(title, genre, image, subTitle, desc, date) {
     this.id = getNextId();
     this.title = title;
     this.genre = genre;
     this.image = image;
     this.subTitle = subTitle;
     this.desc = desc;
-    this.views = views;
+    this.date = date;
   }
 
 }

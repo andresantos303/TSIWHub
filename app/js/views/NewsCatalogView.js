@@ -5,21 +5,15 @@ function catalogView() {
 
   renderCatalog(Noticia.getNoticias());
 
-  /* // CLICAR NO BOTÃO FILTRAR
-  document.querySelector("#btnFilter").addEventListener("click", () => {
+  // CLICAR NO BOTÃO FILTRAR
+  document.getElementById("category").addEventListener("click", () => {
     renderCatalog(
-      Band.getNoticias(
+      Noticia.getNoticias(
         document.querySelector("#txtTitle").value,
-        document.querySelector("#sltGenre").value
+        document.querySelector("#category").value
       )
     );
   });
-
-  // CLICAR NO BOTÃO ORDENAR
-  document.querySelector("#btnSort").addEventListener("click", () => {
-    Noticia.sortNews();
-    renderCatalog(Noticia.getNoticias());
-  }); */
 }
 
 // EXIBIR O CATÁLOGO DE Noticias
@@ -40,7 +34,7 @@ function generateCard(noticia) {
   <div class="img-box">
       <img src="${noticia.image}" alt="">
       <div class="content">
-          <a href="noticia.html">${noticia.title}</a>
+          <a href="noticias.html">${noticia.title}</a>
       </div>
   </div>
 </div> `;
