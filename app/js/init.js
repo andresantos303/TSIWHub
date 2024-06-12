@@ -1,5 +1,6 @@
 import * as Noticia from "./models/NoticiaModel.js";
 import * as User from "./models/UserModel.js";
+import * as Testemunho from "./models/TestemunhoModel.js";
 
 initdata();
 
@@ -95,22 +96,43 @@ function initdata() {
   if (!localStorage.testemunhos) {
     const testemunhos = [
       {
-        title: "Espaço Alumi | Gonçalo Ribeiro",
-        genre: "Atividades",
+        name: "Gonçalo Ribeiro",
+        type: "Ex aluno/a",
         image: "assets/images/data/image4.jpg",
-        subTitle: "Gonçalo Ribeiro, alumnus da Licenciatura em Tecnologias e Sistemas de Informação para a Web, trabalha atualmente na Natixis.",
+        subTitle: "Gonçalo Ribeiro, aluno da Licenciatura em Tecnologias e Sistemas de Informação para a Web, trabalha atualmente na Natixis.",
         desc: "Gonçalo Ribeiro, aluno da Licenciatura em Tecnologias e Sistemas de Informação para a Web, trabalha atualmente como Junior Developer, na Natixis. Como Junior Developer, na Natixis, dedica-se ao desenvolvimento full stack em múltiplos projetos na área de Seguros — do Ramo Não Vida — associados ao Grupo BPCE, o segundo maior grupo bancário de França. Paralelamente, frequenta o Mestrado em Engenharia Informática, no ISEP. Conheceu a Natixis durante o evento Plug-in da ESMAD, depois, em março de 2022, começou um estágio curricular em automação de testes de software, e mais tarde avançou para um estágio profissional como Developer Intern. Esta experiência culminou na sua atual posição de Junior Developer, assumida em novembro de 2023. Gonçalo define que 'todo este percurso tem sido extremamente enriquecedor e desafiante, contribuindo significativamente para o meu crescimento pessoal e profissional'. Segundo o próprio 'a Licenciatura em Tecnologias e Sistemas de Informação para a Web revelou-se fundamental, proporcionando-me uma formação sólida e criativa no desenvolvimento de software, com ênfase especial em aplicações web e mobile. Os projetos práticos, e em particular o desafio de desenvolver aplicações com gamificação para o concurso GamifyIt, organizado pela ESMAD, permitiram-me não só aplicar conhecimentos teóricos em cenários reais, como também inovar e criar soluções criativas. A interação constante com um corpo docente experiente e dedicado, juntamente com o trabalho em equipa, enriqueceu enormemente a minha experiência'.",
-        date: "31 Maio 2024"
       },
+      {
+        name: "Inês Reis",
+        type: "Aluno/a de mestrado",
+        image: "assets/images/data/image11.jpg",
+        subTitle: "Inês Reis, aluna da Licenciatura em Tecnologias e Sistemas de Informação para a Web, frequenta atualmente o Mestrado em Sistemas e Media Interativos.",
+        desc: "Citando a Inês 'digo, de coração cheio, que os três anos na licenciatura foram transformadores'. Inicialmente sem rumo, descobriu a sua paixão: o Design da Experiência do Utilizador e de Interfaces. 'A licenciatura, elogiada por muitos conhecidos pelas suas competências abrangentes, proporcionou-me não apenas formação profissional, mas também experiências académicas que nunca vou esquecer'. Inês fez o seu estágio na Kendir Studios, onde desempenhou o papel de Gestora de Projetos e UX Designer. Da altura do estágio, destaca a criação do recurso educativo digital Fibonacci e o Número de Ouro, premiado pela Direção-Geral de Educação. Realça, igualmente, as pilotagens em escolas de diversos concelhos, desde Vila Nova de Gaia a Sintra, para o Recurso Educativo Digital de 'Sustentabilidade', onde teve a oportunidade de estudar várias turmas de diferentes anos, desde o 7.º ao 9.º ano. Finalizou o estágio com o que, segundo a própria, foi a sua maior conquista até aos dias de hoje: pela primeira vez, na história do curso, obteve 20 valores no estágio. Inês Reis integrará a equipa da MOG Technologies, como Gestora de Projetos de Inovação, o que dará seguimento ao seu percurso profissional.",
+        date: "04 Abril 2024"
+      },    
+      {
+        name: "Nuno Costa",
+        type: "Ex aluno/a",
+        image: "assets/images/data/image4.jpg",
+        subTitle: "Nuno Costa, aluno da Licenciatura em Tecnologias e Sistemas de Informação para a Web, trabalha atualmente na MOG Technologies.",
+        desc: "Nuno Costa, alumnus da Licenciatura em Tecnologias e Sistemas de Informação para a Web, trabalha atualmente como Assistente Convidado na Escola Superior de Media Artes e Design e como Software Developer na MOG Technologies. Durante a frequência do curso, em conjunto com dois colegas, conquistou o 1.º lugar no concurso internacional de programação I Juezlti Contest of EU Code Week. A jornada do Nuno na MOG teve início num evento organizado pela ESMAD, o Plug-in, que tem como objetivo promover uma ligação mais estreita entre os estudantes e as empresas. Durante o seu estágio na empresa, desenvolveu um projeto no ramo da educação, colaborando com parceiros de diferentes países europeus. Após a conclusão do estágio, Nuno foi convidado a integrar uma equipa de desenvolvimento da empresa onde estagiou. “Ingressar em TSIW preparou-me para os desafios do mundo profissional. Os diferentes projetos de grupo e o foco nas tecnologias mais recentes proporcionaram-me uma base sólida de conhecimentos e habilidades práticas, como o trabalho de equipa e resolução de problemas.” Como Assistente Convidado, compartilha o seu conhecimento na mesma instituição onde se formou, contribuindo para a formação de futuros profissionais na área.",
+      },
+      {
+        name: "Gonçalo Professor",
+        type: "Professor",
+        image: "assets/images/data/image4.jpg",
+        subTitle: "Gonçalo Ribeiro, aluno da Licenciatura em Tecnologias e Sistemas de Informação para a Web, trabalha atualmente na Natixis.",
+        desc: "Gonçalo Ribeiro, aluno da Licenciatura em Tecnologias e Sistemas de Informação para a Web, trabalha atualmente como Junior Developer, na Natixis. Como Junior Developer, na Natixis, dedica-se ao desenvolvimento full stack em múltiplos projetos na área de Seguros — do Ramo Não Vida — associados ao Grupo BPCE, o segundo maior grupo bancário de França. Paralelamente, frequenta o Mestrado em Engenharia Informática, no ISEP. Conheceu a Natixis durante o evento Plug-in da ESMAD, depois, em março de 2022, começou um estágio curricular em automação de testes de software, e mais tarde avançou para um estágio profissional como Developer Intern. Esta experiência culminou na sua atual posição de Junior Developer, assumida em novembro de 2023. Gonçalo define que 'todo este percurso tem sido extremamente enriquecedor e desafiante, contribuindo significativamente para o meu crescimento pessoal e profissional'. Segundo o próprio 'a Licenciatura em Tecnologias e Sistemas de Informação para a Web revelou-se fundamental, proporcionando-me uma formação sólida e criativa no desenvolvimento de software, com ênfase especial em aplicações web e mobile. Os projetos práticos, e em particular o desafio de desenvolver aplicações com gamificação para o concurso GamifyIt, organizado pela ESMAD, permitiram-me não só aplicar conhecimentos teóricos em cenários reais, como também inovar e criar soluções criativas. A interação constante com um corpo docente experiente e dedicado, juntamente com o trabalho em equipa, enriqueceu enormemente a minha experiência'.",
+      },
+      
     ];
     testemunhos.forEach((testemunho) => {
       Testemunho.add(
-        testemunho.title,
-        testemunho.genre,
+        testemunho.name,
+        testemunho.type,
         testemunho.image,
         testemunho.subTitle,
         testemunho.desc,
-        testemunho.date,
       );
     });
   }
