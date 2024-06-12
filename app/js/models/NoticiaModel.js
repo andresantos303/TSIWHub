@@ -4,8 +4,8 @@ let noticias = [];
 export function init() {
   if(localStorage.noticias) {
     const tempNews = JSON.parse(localStorage.noticias);
-    for(let noticia of tempNews) {
-      noticias.push(new Noticia(noticia.title, noticia.genre, noticia.image, noticia.subTitle, noticia.desc, noticia.date, noticia.id));
+    for(let noticia of tempNews) {  
+      noticias.push(new Noticia(noticia.title, noticia.genre, noticia.image, noticia.subTitle, noticia.desc, noticia.date));
     }
   } else {
     noticias = [];
@@ -13,11 +13,11 @@ export function init() {
 }
 
 // ADICIONAR Noticia
-export function add(title, genre, image, subTitle, desc, date, id) {
+export function add(title, genre, image, subTitle, desc, date) {
   if (noticias.some((noticia) => noticia.title === title)) {
     throw Error(`A Noticia com o título "${title}" já existe!`);
   } else {
-    noticias.push(new Noticia(title, genre, image, subTitle, desc, date, id));
+    noticias.push(new Noticia(title, genre, image, subTitle, desc, date));
     localStorage.setItem("noticias", JSON.stringify(noticias));
   }
 }
@@ -30,7 +30,12 @@ export function removerNoticias(title) {
 
 // OBTER A Noticia ATUAL (TODO O OBJETO)
 export function getCurrentNews() {
-  return noticias.find((noticia) => noticia.title === localStorage.getItem("noticias"));
+  return noticias.find((noticia) => noticia.id == localStorage.getItem("noticia"));
+}
+
+// DEFINIR A Noticia ATUAL (AQUELA QUE SERÁ VISTA NO DETALHE DA Noticia)
+export function setCurrentNews(id) {
+  localStorage.setItem("noticia", id);
 }
 
 // OBTER Noticias (COM SUPORTE A FILTROS E ORDENAÇÕES)

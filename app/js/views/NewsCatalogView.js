@@ -5,7 +5,7 @@ function catalogView() {
 
   renderCatalog(Noticia.getNoticias());
 
-  // CLICAR NO BOTÃO FILTRAR
+  /* // CLICAR NO BOTÃO FILTRAR
   document.getElementById("category").addEventListener("click", () => {
     renderCatalog(
       Noticia.getNoticias(
@@ -13,8 +13,10 @@ function catalogView() {
         document.querySelector("#category").value
       )
     );
-  });
+  }); */
 }
+
+
 
 // EXIBIR O CATÁLOGO DE Noticias
 function renderCatalog(noticias = []) {
@@ -25,6 +27,15 @@ function renderCatalog(noticias = []) {
   // Atribuição de todos os cards gerados ao elemento com id myCatalog
   document.querySelector("#myCatalog").innerHTML = result;
 
+  // Ver mais
+  const btnsSeeMore = document.getElementsByClassName("viewMore");
+  for (const button of btnsSeeMore) {
+    button.addEventListener("click", () => {
+      console.log(button.id)
+      Noticia.setCurrentNews(button.id);
+      location.href = "noticia.html";
+    });
+  }
 }
 
 // GERAR CARTÃO COM A Noticia
@@ -34,7 +45,7 @@ function generateCard(noticia) {
   <div class="img-box">
       <img src="${noticia.image}" alt="">
       <div class="content">
-          <a href="noticias.html">${noticia.title}</a>
+          <a id="${noticia.id}" class="viewMore">${noticia.title}</a>
       </div>
   </div>
 </div> `;
