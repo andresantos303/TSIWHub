@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TSIWHub - Escape Room</title>
+    <link rel="stylesheet" href="app/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="app/swiper/swiper-bundle.min.css">
+    <link rel="stylesheet" href="app/dist/app.css">
+    <link rel="stylesheet" href="assets/font/font-awesome.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Favicon and Touch Icons  -->
+    <link rel="shortcut icon" href="assets/images/logo/logo1.png">
+</head>
+
+<style>
+    body {
+        background-image: url('assets/images/backgroup/escape.jpg');
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: cover;
+    }
+
+    button {
+        padding: 10px 20px;
+        font-size: 16px;
+        margin: 10px;
+        cursor: pointer;
+        border-radius: 5px;
+        border: 2px solid #e97517;
+        background-color: #e97517;
+        color: white;
+        transition: background-color 0.3s, color 0.3s;
+    }
+
+    button:hover {
+        background-color: white;
+        color: #e97517;
+    }
+
+    #answersContainer1 button,
+    #answersContainer2 button {
+        display: block;
+        margin: 10px auto;
+        width: 200px;
+    }
+
+    #questionDisplay1,
+    #questionDisplay2 {
+        font-size: 20px;
+        margin-bottom: 20px;
+    }
+
+    .correct {
+        background-color: green !important;
+        border-color: green !important;
+    }
+
+    .incorrect {
+        background-color: red !important;
+        border-color: red !important;
+    }
+
+    #timer {
+        font-weight: 700;
+        font-size: 25px;
+        color: white;
+        margin-bottom: 20px;
+        text-align: center;
+        margin-top: 30px;
+        font-family: "Chakra Petch", sans-serif;
+    }
+</style>
+
+<body>
+    <div id="timer">Tempo: 00:00</div>
+
+    <div class="wrap-btn" style="margin-top: 140px; margin-left: 180px; width: 100px;">
+        <a class="btn1" data-toggle="modal" data-target="#popup_bid1"><span class="effect">Pergunta</span></a>
+    </div>
+
+    <div class="modal fade popup" id="popup_bid1" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="header-popup">
+                    <h5>Pergunta</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body center">
+                    <div class="box-wallet-inner">
+                        <div class="sc-box">
+                            <h6 class="heading">
+                                <p id="questionDisplay1"></p>
+                            </h6>
+                            <div id="answersContainer1"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="wrap-btn" style="margin-top: 20px; margin-left: 140px; width: 100px;">
+        <a class="btn2" data-toggle="modal" data-target="#popup_bid2"><span class="effect">Pergunta</span></a>
+    </div>
+
+    <div class="modal fade popup" id="popup_bid2" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="header-popup">
+                    <h5>Pergunta</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body center">
+                    <div class="box-wallet-inner">
+                        <div class="sc-box">
+                            <h6 class="heading">
+                                <p id="questionDisplay2"></p>
+                            </h6>
+                            <div id="answersContainer2"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const qaPairs = [
+            { question: "Qual é a capital da França?", answer: "Paris" },
+            { question: "Quem escreveu 'Dom Casmurro'?", answer: "Machado de Assis" },
+            { question: "Qual é o maior planeta do sistema solar?", answer: "Júpiter" },
+            { question: "Quem pintou a Mona Lisa?", answer: "Leonardo da Vinci" },
+            { question: "Em que ano o homem pisou na Lua pela primeira vez?", answer: "1969" }
+        ];
+
+        const buttons = [
+            { button: document.querySelector('.btn1'), display: document.getElementById('questionDisplay1'), container: document.getElementById('answersContainer1'), modalId: '#popup_bid1' },
+            { button: document.querySelector('.btn2'), display: document.getElementById('questionDisplay2'), container: document.getElementById('answersContainer2'), modalId: '#popup_bid2' }
+        ];
+
+        const timerDisplay = document.getElementById('timer');
+        let totalSeconds = 0;
+        setInterval(() => {
+            ++totalSeconds;
+            const minutes = Math.floor(totalSeconds / 60);
+            const seconds = totalSeconds % 60;
+            timerDisplay.textContent = `Tempo: ${pad(minutes)}:${pad(seconds)}`;
+        }, 1000);
+
+        buttons.forEach(({ button, display, container, modalId }) => {
+            button.addEventListener('click', () => {
+                display.textContent = '';
+                container.innerHTML = '';
+
+                const randomIndex = Math.floor(Math.random() * qaPairs.length);
+                const selectedQuestion = qaPairs[randomIndex];
+
+                display.textContent = selectedQuestion.question;
+
+                let answers = qaPairs.map(pair => pair.answer);
+                answers = answers.filter(answer => answer !== selectedQuestion.answer);
+                shuffleArray(answers);
+
+                const randomIncorrectAnswers = answers.slice(0, 2);
+
+                const finalAnswers = [...randomIncorrectAnswers, selectedQuestion.answer];
+                shuffleArray(finalAnswers);
+
+                finalAnswers.forEach(answer => {
+                    const answerButton = document.createElement('button');
+                    answerButton.textContent = answer;
+                    answerButton.addEventListener('click', () => {
+                        if (answer === selectedQuestion.answer) {
+                            answerButton.classList.add('correct');
+                            button.classList.add('correct');
+                            button.style.pointerEvents = 'none';
+
+                            $(modalId).modal('hide');
+                        } else {
+                            answerButton.classList.add('incorrect');
+
+                            setTimeout(() => {
+                                $(modalId).modal('hide');
+                            }, 500);
+                        }
+                        Array.from(container.children).forEach(btn => btn.disabled = true);
+                    });
+                    container.appendChild(answerButton);
+                });
+            });
+        });
+
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+        }
+
+        function pad(val) {
+            const valString = val + "";
+            if (valString.length < 2) {
+                return "0" + valString;
+            } else {
+                return valString;
+            }
+        }
+    });
+</script>
+
+
+<script src="app/js/extra/jquery.min.js"></script>
+<script src="app/js/extra/bootstrap.min.js"></script>
+<script src="app/js/extra/swiper-bundle.min.js"></script>
+<script src="app/js/extra/swiper.js"></script>
+<script src="app/js/app.js"></script>
+<script src="app/js/extra/jquery.easing.js"></script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script src="app/js/extra/jquery.magnific-popup.min.js"></script>
+<script src="app/js/extra/jquery-validate.js"></script>
+
+</html>
