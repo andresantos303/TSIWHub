@@ -33,13 +33,7 @@ export function getCurrentNews() {
   return noticias.find((noticia) => noticia.title === localStorage.getItem("noticias"));
 }
 
-// ORDENAR Noticias
-export function sortNews() {
-  noticias.sort((a, b) => a.id.localeCompare(b.id));
-  //localStorage.setItem("bands", JSON.stringify(bands));
-}
-
-// OBTER BANDAS (COM SUPORTE A FILTROS E ORDENAÇÕES)
+// OBTER Noticias (COM SUPORTE A FILTROS E ORDENAÇÕES)
 export function getNoticias(filterTitle = "", filterGenre = "", isSorted = false) {
   let filteredNews = noticias.filter(
     (noticia) =>

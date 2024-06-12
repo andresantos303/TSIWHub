@@ -1,43 +1,38 @@
-import * as Testemunho from "./models/TestemunhoModel.js";
+import * as Testemunho from "../models/TestemunhoModel.js";
 
 function catalogView() {
   Testemunho.init();
 
   renderCatalog(Testemunho.getTestemunhos());
-
-  // CLICAR NO BOTÃO FILTRAR
-  document.getElementById("category").addEventListener("click", () => {
-    renderCatalog(
-      Testemunho.getTestemunhos(
-        document.querySelector("#txtTitle").value,
-        document.querySelector("#category").value
-      )
-    );
-  });
 }
 
-// EXIBIR O CATÁLOGO DE Testemunhos
+// EXIBIR O CATÁLOGO DE Testemunhos HomePage
 function renderCatalog(testemunhos = []) {
   let result = "";
   for (const testemunho of testemunhos) {
     result += generateCard(testemunho);
   }
-  // Atribuição de todos os cards gerados ao elemento com id myCatalog
-  document.querySelector("").innerHTML = result;
+  // Atribuição de todos os cards gerados ao elemento
+  document.getElementById("testeCatelog").innerHTML = result;
 
 }
 
-// GERAR CARTÃO COM A Testemunho
+
+
+// GERAR CARTÃO COM o Testemunho
 function generateCard(testemunho) {
   let result = ` 
-  <div class="fl-item">
-  <div class="img-box">
-      <img src="${testemunho.image}" alt="">
-      <div class="content">
-          <a href="testemunho.html">${testemunho.title}</a>
-      </div>
-  </div>
-</div> `;
+  <div class="swiper-slide">
+    <div class="team-box">
+        <div class="image">
+            <img src="${testemunho.image}" alt="">
+        </div>
+        <div class="content">
+            <div class="h8">${testemunho.name}</div>
+            <p>${testemunho.type}</p>
+        </div>
+    </div>
+</div>`;
   return result;
 }
 

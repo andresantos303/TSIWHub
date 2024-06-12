@@ -5,7 +5,7 @@ export function init() {
   if(localStorage.testemunhos) {
     const tempNews = JSON.parse(localStorage.testemunhos);
     for(let testemunho of tempNews) {
-      testemunhos.push(new testemunho(testemunho.name, testemunho.type, testemunho.image, testemunho.subTitle, testemunho.desc, testemunho.id));
+      testemunhos.push(new Testemunho(testemunho.name, testemunho.type, testemunho.image, testemunho.subTitle, testemunho.desc, testemunho.id));
     }
   } else {
     testemunhos = [];
@@ -17,7 +17,7 @@ export function add(name, type, image, subTitle, desc, id) {
   if (testemunhos.some((testemunho) => testemunho.name === name)) {
     throw Error(`A testemunho com o nome "${title}" já existe!`);
   } else {
-    testemunhos.push(new testemunho(name, type, image, subTitle, desc, id));
+    testemunhos.push(new Testemunho(name, type, image, subTitle, desc, id));
     localStorage.setItem("testemunhos", JSON.stringify(testemunhos));
   }
 }
@@ -29,24 +29,24 @@ export function removertestemunhos(name) {
 }
 
 // OBTER A testemunho ATUAL (TODO O OBJETO)
-export function getCurrentNews() {
+export function getCurrentTestemunho() {
   return testemunhos.find((testemunho) => testemunho.name === localStorage.getItem("testemunhos"));
 }
 
-// OBTER BANDAS (COM SUPORTE A FILTROS E ORDENAÇÕES)
-export function gettestemunhos(filterTitle = "", filterGenre = "", isSorted = false) {
-  let filteredNews = testemunhos.filter(
+// OBTER Testemunhos (COM SUPORTE A FILTROS E ORDENAÇÕES)
+export function getTestemunhos(filterName = "", filterType = "", isSorted = false) {
+  let filteredTest = testemunhos.filter(
     (testemunho) =>
-      (testemunho.title.toLowerCase().includes(filterTitle.toLowerCase()) ||
-        filterTitle === "") &&
-      (testemunho.genre == filterGenre || filterGenre === "")
+      (testemunho.name.toLowerCase().includes(filterName.toLowerCase()) ||
+        filterName === "") &&
+      (testemunho.genre == filterType || filterType === "")
   );
 
-  filteredNews = isSorted
-    ? filteredNews.sort((a, b) => a.title.localeCompare(b.title))
-    : filteredNews;
+  filteredTest = isSorted
+    ? filteredTest.sort((a, b) => a.title.localeCompare(b.name))
+    : filteredTest;
 
-  return filteredNews.reverse();
+  return filteredTest.reverse();
 }
 
 function getNextId() {
@@ -56,7 +56,7 @@ function getNextId() {
 
 /* Classe que modela um testemunho */
  
-class testemunho {
+class Testemunho {
   id = null;
   name = "";
   type = "";
