@@ -84,15 +84,11 @@
                     <div class="col-md-8 z-index">
                         <div class="seclect-box" data-aos="fade-in" data-aos-duration="800">
                             <div class="dropdown selector-drop">
-                                <a href="javascript:void(0);" class="btn-selector btn-link" data-bs-toggle="dropdown"
-                                    aria-expanded="false">
-                                    <span class="boder"></span>Categorias
-                                </a>
-                                <ul class="dropdown-menu dropdown-menu-right">
-                                    <li class="dropdown-item active" data-toggle="modal" id="category" data-target="#delete_client">
-                                        Atividades</li>
-                                    <li class="dropdown-item" data-toggle="modal" id="category" data-target="#edit_client">Projetos</li>
-                                </ul>
+                                <select class="form-control" id="category">
+                                    <option value="">Todas Categorias</option>
+                                    <option value="Projetos">Projetos</option>
+                                    <option value="Atividades">Atividades</option>
+                                </select>
                             </div>
                         </div>
                     </div>
