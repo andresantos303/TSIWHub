@@ -2,9 +2,9 @@ let noticias = [];
 
 // CARREGAR NOTICIAS DA LOCALSTORAGE
 export function init() {
-  if(localStorage.noticias) {
+  if (localStorage.noticias) {
     const tempNews = JSON.parse(localStorage.noticias);
-    for(let noticia of tempNews) {  
+    for (let noticia of tempNews) {
       noticias.push(new Noticia(noticia.title, noticia.genre, noticia.image, noticia.subTitle, noticia.desc, noticia.date));
     }
   } else {
@@ -40,12 +40,13 @@ export function setCurrentNews(id) {
 
 // OBTER Noticias (COM SUPORTE A FILTROS)
 export function getNoticias(filterTitle = "", filterGenre = "") {
-  let filteredNews = noticias.filter(
+  let filteredNews = noticias
+  filteredNews = noticias.filter(
     (noticia) =>
-      (filterTitle === "" || noticia.title.toLowerCase().includes(filterTitle.toLowerCase())) &&
-      (filterGenre === "" || noticia.genre === filterGenre)
+      (filterGenre === "" || noticia.genre === filterGenre) &&
+      (filterTitle === "" || noticia.title.toLowerCase().includes(filterTitle.toLowerCase()))
   );
-
+  console.log(filteredNews)
   return filteredNews.reverse();
 }
 
