@@ -114,7 +114,7 @@
                     </div>
                     <div class="col-md-7">
                         <div class="wrap-about p-l70" data-aos="fade-up" data-aos-duration="800">
-                            <div class="box-text corner-box active">
+                            <div class="box-text corner-box">
                                 <div class="h7">Plano de Estudos</div>
                                 <p> O nosso plano procura dotar os estudantes de conhecimento e competências
                                     práticas que lhes permitam o domínio de áreas emergentes como os serviços centrados
@@ -232,23 +232,24 @@
                             </div>
                             <p class="m-r-40">Envia-nos mensagem que nós respondemos as tuas dúvidas</p>
                         </div>
-                        <form action="contact/contact-process.php" class="form-contact" id="contactform"
-                            data-aos="fade-right" data-aos-duration="800">
-                            <fieldset>
-                                <input type="text" name="name" id="name" placeholder="Nome">
-                            </fieldset>
-                            <fieldset>
-                                <input type="email" name="mail" id="mail" placeholder="Email">
-                            </fieldset>
-                            <fieldset>
-                                <input type="number" name="phone" id="phone" placeholder="Telemóvel">
-                            </fieldset>
-                            <fieldset>
-                                <textarea placeholder="Mensagem" rows="5" tabindex="4" name="message" class="message"
-                                    id="message"></textarea>
-                            </fieldset>
-                            <button class="tf-button btn-effect" type="submit"><span class="boder-fade"></span><span
-                                    class="effect">Enviar</span></button>
+
+                        <div class="contact-container">
+                            <form action="https://api.web3forms.com/submit" method="POST" class="contact-left">
+                                <input type="hidden" name="access_key" value="d036c687-2033-4e9f-a452-1cf1e9a9a651">
+                                <input type="text" name="name" placeholder="Nome" class="contact-inputs" required>
+                                <input type="email" name="email" placeholder="Email" class="contact-inputs"
+                                    required>
+                                <input type="number" name="number" placeholder="Nºtelemóvel" class="contact-inputs"
+                                    required>
+                                <textarea name="message" placeholder="Mensagem " class="contact-inputs"
+                                    required></textarea>
+                                <button type="submit" class="tf-button-st2 btn-effect">Enviar</button>
+                            </form>
+                        </div>
+                        <div class="conctact-right">
+
+                        </div>
+
                         </form>
                     </div>
                     <div class="col-xl-7 col-lg-7 col-md-12">

@@ -5,18 +5,17 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TSIWHub - Notícias</title>
+    <title>TSIWHub - Testemunho</title>
     <link rel="stylesheet" href="app/bootstrap/css/bootstrap.css">
     <link rel="stylesheet" href="app/swiper/swiper-bundle.min.css">
     <link rel="stylesheet" href="app/dist/app.css">
     <link rel="stylesheet" href="assets/font/font-awesome.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <!-- Favicon and Touch Icons  -->
     <link rel="shortcut icon" href="assets/images/logo/logo1.png">
 </head>
 
-<body class="header-fixed inner-page">
-    <!-- preload -->
+<body class="header-fixed inner-page pg-item-details">
+    <!-- preloade -->
     <div class="preload preload-container">
         <div class="preload-logo"><img style="margin-top: 0.5em;" src="assets/images/logo/logo2.png" alt=""></div>
     </div>
@@ -48,11 +47,11 @@
                             </li>
                         </ul>
                     </nav><!-- /#main-nav -->
-                    <a class="tf-button btn-effect">
+                    <a class="tf-button btn-effect" href="#">
                         <span class="boder-fade"></span>
                         <span class="effect">Junte-se a nós</span>
                     </a>
-                    <div class="mobile-button"><span></span></div>
+                    <div class="mobile-button"><span></span></div><!-- /.mobile-button -->
                 </div>
             </div>
         </header>
@@ -62,68 +61,69 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="breadcrumbs" data-aos="zoom-in" data-aos-duration="800">
-                            <h3>Notícias</h3>
-                        </div>
+                        <!-- espaço vazio -->
                     </div>
                 </div>
             </div>
         </section>
 
-        <section class="tf-section tf-item">
+        <section class="tf-section tf-item-details pb-mobie">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-4">
-                        <div class="widget widget-search" data-aos="fade-in" data-aos-duration="800">
-                            <form action="#">
-                                <input type="text" id="search" placeholder="Procurar" required="">
-                                <button id="btn"><i class="fal fa-search"></i></button>
-                            </form>
+                    <div class="col-xl-6 col-lg-6 col-md-12">
+                        <div class="image-details" data-aos="fade-right" data-aos-duration="800">
+                            <img id="image" src="" alt="">
                         </div>
                     </div>
-                    <div class="col-md-8 z-index">
-                        <div class="seclect-box" data-aos="fade-in" data-aos-duration="800">
-                            <div class="dropdown selector-drop">
-                                <a href="javascript:void(0);" class="btn-selector btn-link" data-bs-toggle="dropdown"
-                                    aria-expanded="false">
-                                    <span class="boder"></span>Categorias
-                                </a>
-                                <ul class="dropdown-menu dropdown-menu-right">
-                                    <li class="dropdown-item active" data-toggle="modal" id="category" data-target="#delete_client">
-                                        Atividades</li>
-                                    <li class="dropdown-item" data-toggle="modal" id="category" data-target="#edit_client">Projetos</li>
-                                </ul>
+                    <div class="col-xl-6 col-lg-6 col-md-12">
+                        <div class="item-details" data-aos="fade-left" data-aos-duration="800">
+                            <h5 id="name"><!-- nome --></h5>
+                            <p class="sub" id="type"><!-- tipo --></p>
+                            <div class="action">
+                            </div>
+                            <p class="desc" id="subtitle"></p>
+
+                            <div class="list-product">
+                                <div class="box corner-box">
+                                    <p>Clothing</p>
+                                    <h6 class="h7">Blank</h6>
+                                </div>
+                                <div class="box corner-box">
+                                    <p>Headwear</p>
+                                    <h6 class="h7">Black Cap</h6>
+                                </div>
+                                <div class="box corner-box">
+                                    <p>Eyewear</p>
+                                    <h6 class="h7">Blank</h6>
+                                </div>
+                                <div class="box corner-box">
+                                    <p>Face</p>
+                                    <h6 class="h7">One Eye</h6>
+                                </div>
+                                <div class="box corner-box">
+                                    <p>Food</p>
+                                    <h6 class="h7">Potato Chip</h6>
+                                </div>
+                                <div class="box corner-box">
+                                    <p>Background</p>
+                                    <h6 class="h7">Galaxy</h6>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-12">
-                        <div class="wrap-fx ml30-fx mt-40" data-aos="fade-up" id="myCatalog" data-aos-duration="800">
-                            <!-- Notícias -->
-                        </div>
-                    </div>
-                    <div class="col-md-12">
-                        <div class="btn-about center m-t16" data-aos="fade-up" data-aos-delay="300"
-                            data-aos-duration="800">
-                            <a class="tf-button btn-effect loadmore st2" href="#" id="loadmore">
-                                <span class="boder-fade"></span>
-                                <span class="effect">Ver Mais</span>
-                            </a>
-                        </div>
-                    </div>
                 </div>
             </div>
         </section>
-
     </div>
     <a id="scroll-top"></a>
 
-    <script type="module" src="app/js/views/NewsCatalogView.js"></script>
+    <script type="module" src="app/js/views/TestView.js"></script>
+
 
     <script src="app/js/extra/jquery.min.js"></script>
-    <script src="app/js/extra/bootstrap.bundle.min.js"></script>
     <script src="app/js/app.js"></script>
     <script src="app/js/extra/jquery.easing.js"></script>
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>    
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 </body>
 
 </html>

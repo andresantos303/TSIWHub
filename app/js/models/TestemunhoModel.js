@@ -30,7 +30,12 @@ export function removertestemunhos(name) {
 
 // OBTER A testemunho ATUAL (TODO O OBJETO)
 export function getCurrentTestemunho() {
-  return testemunhos.find((testemunho) => testemunho.name === localStorage.getItem("testemunhos"));
+  return testemunhos.find((testemunho) => testemunho.id == localStorage.getItem("testemunho"));
+}
+
+// DEFINIR A Noticia ATUAL (AQUELA QUE SERÁ VISTA NO DETALHE DA Noticia)
+export function setCurrentTestemunho(id) {
+  localStorage.setItem("testemunho", id);
 }
 
 // OBTER Testemunhos (COM SUPORTE A FILTROS E ORDENAÇÕES)

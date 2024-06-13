@@ -38,21 +38,17 @@ export function setCurrentNews(id) {
   localStorage.setItem("noticia", id);
 }
 
-// OBTER Noticias (COM SUPORTE A FILTROS E ORDENAÇÕES)
-export function getNoticias(filterTitle = "", filterGenre = "", isSorted = false) {
+// OBTER Noticias (COM SUPORTE A FILTROS)
+export function getNoticias(filterTitle = "", filterGenre = "") {
   let filteredNews = noticias.filter(
     (noticia) =>
-      (noticia.title.toLowerCase().includes(filterTitle.toLowerCase()) ||
-        filterTitle === "") &&
-      (noticia.genre == filterGenre || filterGenre === "")
+      (filterTitle === "" || noticia.title.toLowerCase().includes(filterTitle.toLowerCase())) &&
+      (filterGenre === "" || noticia.genre === filterGenre)
   );
-
-  filteredNews = isSorted
-    ? filteredNews.sort((a, b) => a.title.localeCompare(b.title))
-    : filteredNews;
 
   return filteredNews.reverse();
 }
+
 
 function getNextId() {
   return noticias.length > 0 ? noticias.length + 1 : 1;

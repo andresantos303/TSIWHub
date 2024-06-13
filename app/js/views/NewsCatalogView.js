@@ -5,15 +5,15 @@ function catalogView() {
 
   renderCatalog(Noticia.getNoticias());
 
-  /* // CLICAR NO BOTÃO FILTRAR
-  document.getElementById("category").addEventListener("click", () => {
+  // CLICAR NO BOTÃO FILTRAR
+  document.getElementById("btn").addEventListener("click", () => {
     renderCatalog(
       Noticia.getNoticias(
-        document.querySelector("#txtTitle").value,
-        document.querySelector("#category").value
+        document.getElementById("search").value,
+        document.getElementById("category").value,
       )
     );
-  }); */
+  });
 }
 
 

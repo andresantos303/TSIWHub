@@ -22,8 +22,16 @@ function renderCatalog(testemunhos = []) {
   for (const testemunho of testemunhos) {
     result += generateCard(testemunho);
   }
-  // Atribuição de todos os cards gerados ao elemento com id myCatalog
   document.getElementById("testeCatelog").innerHTML = result;
+
+  // Ver mais
+  const btnsSeeMore = document.getElementsByClassName("viewMore");
+  for (const button of btnsSeeMore) {
+    button.addEventListener("click", () => {
+      Testemunho.setCurrentTestemunho(button.id);
+      location.href = "testemunho.html";
+    });
+  }
 
 }
 
@@ -35,7 +43,7 @@ function generateCard(testemunho) {
       <img src="${testemunho.image}" alt="">
       <div class="content">
           <p>${testemunho.type}</p>
-          <a href="testemunho.html">${testemunho.name}</a>
+          <a class="viewMore" id="${testemunho.id}">${testemunho.name}</a>
       </div>
   </div>
 </div> `;
