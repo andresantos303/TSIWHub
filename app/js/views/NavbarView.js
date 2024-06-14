@@ -5,44 +5,56 @@ function navbarView() {
 
   // CONSTRUIR CONTEÚDO DA NAVBAR (VERIFICAR SE USER AUTENTICADO)
   let result = `
-      <a class="navbar-brand ml-2" href="../index.html">
-        <img src="/img/logo.png" style="width: 100px; height:56px"/>
-      </a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
-          <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="collapsibleNavbar">            
+      <div class="container">
+                <div id="site-header-inner">
+                    <div class="header__logo">
+                        <a href="index.html"><img style="width: 5em;" src="assets/images/logo/logo1.png" alt=""></a>
+                    </div>
+                    <nav id="main-nav" class="main-nav">
+                        <ul id="menu-primary-menu" class="menu">
+                            <li class="menu-item">
+                                <a href="index.html#home">Ínicio</a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="index.html#sobre">Sobre o curso</a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="index.html#noticias">Notícias</a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="index.html#testemunhos">Testemunhos</a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="index.html#contactos">Contactos</a>
+                            </li>
+                        </ul>
+                    </nav>            
   `;
 
   if (User.isLogged()) {
-    result += `<a id="btnAddBand" class="nav-link" href="html/bandAdd.html">Add band</a>
-                    <!-- Descrição do utilizador autenticado -->
-                    <div id="authButtons" class="ms-auto m-1">
-                        Olá <a href="#">${User.getUserLogged().username}</a>
-                        <button id="btnLogout" class="btn btn-outline-success m-2 my-sm-0">
-                            Logout
-                        </button>
-                    </div>
+    result += `<a class="tf-button btn-effect" id="${User.getUserLogged().username}" href="perfil.html">
+                        <span class="boder-fade"></span>
+                        <span class="effect profile">Perfil</span>
+                    </a>
+                    <div class="mobile-button"><span></span></div>
+                </div>
+            </div>
                 `;
   } else {
-    result += `  
-                    
-                    <!-- Botão para ativar a janela modal de login -->
-                    <div id="authButtons" class="ms-auto m-1">                    
-                        <button class="btn btn-outline-success m-1" data-bs-toggle="modal" data-bs-target="#mdlLogin">
-                            Login
-                        </button>
-                        <button class="btn btn-outline-success m-1" data-bs-toggle="modal" data-bs-target="#mdlRegister">
-                            Register
-                        </button>                
-                    </div>          
-                      
+    result += `     
+                    <a class="tf-button btn-effect" data-toggle="modal" data-target="#mdlRegister">
+                        <span class="boder-fade"></span>
+                        <span class="effect">Junte-se a nós</span>
+                    </a>
+                    <div class="mobile-button"><span></span></div>
+                </div>
+            </div>                
                 `;
   }
   result += `</div>`;
 
   // INJETAR CONTEÚDO NA NAVBAR
-  document.querySelector("nav").innerHTML = result;
+  document.getElementById("header_main").innerHTML = result;
 
   // CLICAR NO BOTÃO DE REGISTAR
   document
@@ -55,12 +67,12 @@ function navbarView() {
       const registerPassword2 = document.getElementById("txtPasswordRegister2");
       try {
         if (registerPassword.value !== registerPassword2.value) {
-          throw Error("Password and Confirm Password are not equal");
+          throw Error("As palavras-passe não coincidem");
         }
         User.add(registerUsername.value, registerPassword.value);
         displayMessage(
           "msgRegister",
-          "User registered with success!",
+          "Utilzador registado com sucesso!",
           "success"
         );
         // Wait 1 second before reloading, so the user can see the login success message
@@ -80,7 +92,7 @@ function navbarView() {
         document.getElementById("txtUsername").value,
         document.getElementById("txtPassword").value
       );
-      displayMessage("msgLogin", "User logged in with success!", "success");
+      displayMessage("msgLogin", "Utilizador entrou com sucesso", "success");
       // Wait 1 second before reloading, so the user can see the login success message
       setTimeout(() => {
         location.reload();

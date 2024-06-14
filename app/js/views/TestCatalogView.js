@@ -15,7 +15,7 @@ function renderCatalog(testemunhos = []) {
   document.getElementById("testeCatelog").innerHTML = result;
 
   // Ver mais
-  const btnsSeeMore = document.getElementsByClassName("viewMore");
+  const btnsSeeMore = document.getElementsByClassName("viewMoreT");
   for (const button of btnsSeeMore) {
     button.addEventListener("click", () => {
       Testemunho.setCurrentTestemunho(button.id);
@@ -35,7 +35,7 @@ function generateCard(testemunho) {
             <img src="${testemunho.image}" alt="">
         </div>
         <div class="content">
-            <a id="${testemunho.id}" class="h8 viewMore">${testemunho.name}</a>
+            <a id="${testemunho.id}" class="h8 viewMoreT">${testemunho.name}</a>
             <p>${testemunho.type}</p>
         </div>
     </div>

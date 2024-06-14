@@ -298,18 +298,18 @@
     </div>
 
     <div id="finalButton" style="display: none; position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);">
-        <button> <a href="index.html">Concluiste o Escape Room modo facil, podes fugir !! </a></button>
+        <button> <a href="index.html">Concluiste o Escape Room modo médio, podes fugir ! </a></button>
     </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const qaPairs = [
-                { question: "O que é HTML?", answer: " é uma linguagem de marcação usada para criar páginas da web" },
-                { question: "O que é um array em programação?", answer: " é uma coleção ordenada de elementos do mesmo tipo." },
-                { question: "O que é JavaScript?", answer: "é uma linguagem de programação usada para tornar as páginas da web interativas." },
-                { question: "O que é CSS?", answer: "é usado para estilizar o layout e a aparência das páginas da web." },
-                { question: "O que é um comentário em código?", answer: "é uma explicação ou anotação no código que não é executada e é usada para fazer o código mais compreensível" },
-                { question: "O que é uma variável em programação?", answer: "é um espaço de armazenamento nomeado usado para guardar dados em um programa." }
+                { question: "O que é JSON?", answer: "  um formato de dados leve e independente de linguagem usado para trocar dados entre um navegador e um servidor." },
+                { question: "O que é o DOM?", answer: " é uma interface de programação que representa a estrutura de uma página web como um conjunto de objetos." },
+                { question: "O que é AJAX?", answer: "é uma técnica de desenvolvimento web que permite atualizações assíncronas de conteúdo em uma página, sem a necessidade de recarregar toda a página." },
+                { question: "O que é um algoritmo?", answer: "é um conjunto de instruções passo a passo para resolver um problema ou executar uma tarefa." },
+                { question: "O que é uma string em programação?", answer: "é uma sequência de caracteres, como texto, entre aspas simples ou duplas." },
+                { question: "O que é um operador de atribuição em programação?", answer: " é usado para atribuir um valor a uma variável. O operador mais comum é o sinal de igual (=)." }
             ];
 
             const modals = [
@@ -334,12 +334,12 @@
 
             modals.forEach(({ display, container, modalId, clickableArea }) => {
                 $(modalId).on('show.bs.modal', () => {
+
                     display.textContent = '';
                     container.innerHTML = '';
 
                     const randomIndex = Math.floor(Math.random() * qaPairs.length);
                     const selectedQuestion = qaPairs[randomIndex];
-
                     display.textContent = selectedQuestion.question;
 
                     let answers = qaPairs.map(pair => pair.answer);

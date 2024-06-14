@@ -141,17 +141,19 @@ function initdata() {
     const users = [
       {
         id: 1,
-        username: "User",
-        password: "Esmad",
+        username: "user",
+        password: "esmad",
+        role:"client",
       },
       {
         id: 2,
-        username: "Admin",
-        password: "Esmad",
+        username: "admin",
+        password: "esmad",
+        role:"admin",
       },
     ];
     users.forEach((user) => {
-      User.add(user.username, user.email, user.password);
+      User.add(user.username, user.password, user.role);
     });
   }
 }

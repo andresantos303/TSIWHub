@@ -46,7 +46,6 @@ export function getNoticias(filterTitle = "", filterGenre = "") {
       (filterGenre === "" || noticia.genre === filterGenre) &&
       (filterTitle === "" || noticia.title.toLowerCase().includes(filterTitle.toLowerCase()))
   );
-  console.log(filteredNews)
   return filteredNews.reverse();
 }
 
