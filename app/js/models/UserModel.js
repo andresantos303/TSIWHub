@@ -4,7 +4,7 @@ let users = [];
 export function init() {
   if (localStorage.users) {
     const tempUsers = JSON.parse(localStorage.users);
-    for(let user of tempUsers) {
+    for (let user of tempUsers) {
       users.push(new User(user.username, user.password, user.type, user.image));
     }
   } else {
@@ -14,10 +14,10 @@ export function init() {
 
 // ADICIONAR UTILIZADOR
 export function add(username, password, type, image) {
-  if(type == undefined){
+  if (type == undefined) {
     type = "Aluno"
   }
-  if(image == undefined){
+  if (image == undefined) {
     image = "assets/images/data/image13.jpg"
   }
   if (users.some((user) => user.username === username)) {
@@ -33,7 +33,10 @@ export function login(username, password) {
   const user = users.find(
     (user) => user.username === username && user.password === password
   );
-  if (user) {
+  if (user.username === "admin") {
+    sessionStorage.setItem("loggedUser", JSON.stringify(user));
+    location.href = "adm/admin.html";
+  } else if (user) {
     sessionStorage.setItem("loggedUser", JSON.stringify(user));
     return true;
   } else {
