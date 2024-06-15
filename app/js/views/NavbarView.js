@@ -102,7 +102,7 @@ function navbarView() {
     }
   });
 
-  // CLICAR NO BOTÃO LOGOUT (O BOTÃO PODE NÃO EXISTIR POR ISSO USAR "?"" - OPTIONAL CHAINING)
+  // CLICAR NO BOTÃO LOGOUT
   document.querySelector("#btnLogout")?.addEventListener("click", () => {
     User.logout();
     location.reload();

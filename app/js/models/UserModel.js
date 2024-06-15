@@ -5,7 +5,7 @@ export function init() {
   if (localStorage.users) {
     const tempUsers = JSON.parse(localStorage.users);
     for(let user of tempUsers) {
-      users.push(new User(user.username, user.password, user.role));
+      users.push(new User(user.username, user.password, user.type, user.image));
     }
   } else {
     users = [];
@@ -13,12 +13,11 @@ export function init() {
 }
 
 // ADICIONAR UTILIZADOR
-export function add(username, password) {
-  let role = "client"
+export function add(username, password, type, image) {
   if (users.some((user) => user.username === username)) {
-    throw Error(`User with username "${username}" already exists!`);
+    throw Error(`Um utilizador com o nome "${username}" já existe!`);
   } else {
-    users.push(new User(username, password, role));
+    users.push(new User(username, password, type, image));
     localStorage.setItem("users", JSON.stringify(users));
   }
   console.log(users);
@@ -68,12 +67,14 @@ class User {
   id = null;
   username = "";
   password = "";
-  role = "";
+  type = "";
+  image = "";
 
-  constructor(username, password, role) {
+  constructor(username, password, type, image) {
     this.id = getNextId();
     this.username = username;
     this.password = password;
-    this.role = role;
+    this.type = type;
+    this.image = image;
   }
 }

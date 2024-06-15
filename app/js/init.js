@@ -140,20 +140,20 @@ function initdata() {
   if (!localStorage.users) {
     const users = [
       {
-        id: 1,
         username: "user",
         password: "esmad",
-        role:"client",
+        type:"Professor",
+        image:"assets/images/data/image13.jpg",
       },
       {
-        id: 2,
         username: "admin",
         password: "esmad",
-        role:"admin",
+        type:"admin",
+        image:"",
       },
     ];
     users.forEach((user) => {
-      User.add(user.username, user.password, user.role);
+      User.add(user.username, user.password, user.type, user.image);
     });
   }
 }

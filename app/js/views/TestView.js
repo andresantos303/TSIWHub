@@ -4,7 +4,6 @@ function testemunhoView() {
   Testemunho.init();
 
   const testemunho = Testemunho.getCurrentTestemunho();
-  console.log(testemunho)
   document.getElementById("name").innerHTML = testemunho.name;
   document.getElementById("type").innerHTML = testemunho.type;
   document.getElementById("subtitle").innerHTML = testemunho.subTitle;
