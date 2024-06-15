@@ -14,13 +14,18 @@ export function init() {
 
 // ADICIONAR UTILIZADOR
 export function add(username, password, type, image) {
+  if(type == undefined){
+    type = "Aluno"
+  }
+  if(image == undefined){
+    image = "assets/images/data/image13.jpg"
+  }
   if (users.some((user) => user.username === username)) {
     throw Error(`Um utilizador com o nome "${username}" já existe!`);
   } else {
     users.push(new User(username, password, type, image));
     localStorage.setItem("users", JSON.stringify(users));
   }
-  console.log(users);
 }
 
 // LOGIN DO UTILIZADOR

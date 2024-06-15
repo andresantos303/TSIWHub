@@ -11,12 +11,10 @@ function userView() {
 
   // Ver mais
   const btnsLogout = document.getElementById("logout");
-  for (const button of btnsLogout) {
-    button.addEventListener("click", () => {
+  btnsLogout.addEventListener("click", () => {
       User.logout();
       location.href = "index.html";
     });
-  }
 }
 
 userView();
