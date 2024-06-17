@@ -8,7 +8,7 @@ function catalogView() {
   document.getElementById("testemunhoNome").value = testemunho.name;
   document.getElementById("testemunhoSubtitulo").value = testemunho.subTitle;
   document.getElementById("testemunhoDescricao").value = testemunho.desc;
-
+  document.getElementById("testemunhoImagem").value = testemunho.image;
 
   document.querySelector("#editTestemunhoForm").addEventListener("submit", (event) => {
     event.preventDefault();

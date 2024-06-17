@@ -30,17 +30,25 @@ export function add(username, password, type, image) {
 
 // LOGIN DO UTILIZADOR
 export function login(username, password) {
-  const user = users.find(
-    (user) => user.username === username && user.password === password
-  );
-  if (user.username === "admin") {
-    sessionStorage.setItem("loggedUser", JSON.stringify(user));
-    location.href = "admin.html";
-  } else if (user) {
-    sessionStorage.setItem("loggedUser", JSON.stringify(user));
-    return true;
-  } else {
-    throw Error("Invalid login!");
+  try {
+    const user = users.find((user) => user.username === username && user.password === password);
+    if (user.username === "admin") {
+      sessionStorage.setItem("loggedUser", JSON.stringify(user));
+      setTimeout(() => {
+        location.href = "admin.html";
+      }, 1000);
+    } else if (user) {
+      sessionStorage.setItem("loggedUser", JSON.stringify(user));
+      // Wait 1 second before reloading, so the user can see the login success message
+      setTimeout(() => {
+        location.reload();
+      }, 1000);
+      return true;
+    } else {
+      throw Error("Invalid login!");
+    }
+  }catch (e) {
+    throw Error("Username ou password incorretas!");
   }
 }
 
@@ -77,17 +85,18 @@ export function findUsers() {
   return users;
 }
 
-// EDITAR Noticia
+// EDITAR utilizador
 export function editUser(id, updatedData) {
-  if (users.find((user) => user.id == id) == -1) {
+  if (users.find((user) => user.id == id) == false) {
     throw Error(`A utilizador com o ID "${id}" não existe!`);
   } else {
     users[id-1].username = updatedData.username || users[id-1].username;
-    users[id-1].password = updatedData.password || users[id-1].password;
     users[id-1].type = updatedData.type || users[id-1].type;
     users[id-1].image = updatedData.image || users[id-1].image;
-    
+    users[id-1].password = updatedData.password || users[id-1].password;
+
     localStorage.setItem("users", JSON.stringify(users));
+    sessionStorage.setItem("loggedUser",JSON.stringify(users[id-1]))
   }
 }
 

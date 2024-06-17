@@ -13,11 +13,11 @@ export function init() {
 }
 
 // ADICIONAR testemunho
-export function add(name, type, image, subTitle, desc, id) {
+export function add(name, type, image, subTitle, desc) {
   if (testemunhos.some((testemunho) => testemunho.name === name)) {
     throw Error(`A testemunho com o nome "${title}" já existe!`);
   } else {
-    testemunhos.push(new Testemunho(name, type, image, subTitle, desc, id));
+    testemunhos.push(new Testemunho(name, type, image, subTitle, desc));
     localStorage.setItem("testemunhos", JSON.stringify(testemunhos));
   }
 }

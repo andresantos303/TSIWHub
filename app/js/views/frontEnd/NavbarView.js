@@ -66,6 +66,9 @@ function navbarView() {
       const registerPassword = document.getElementById("txtPasswordRegister");
       const registerPassword2 = document.getElementById("txtPasswordRegister2");
       try {
+        if(registerUsername.value === "" || registerPassword2.value === "" || registerPassword.value === ""){
+          throw Error("Todos os dados necessitam de ser preenchidos!");
+        }
         if (registerPassword.value !== registerPassword2.value) {
           throw Error("As palavras-passe não coincidem");
         }
@@ -77,6 +80,10 @@ function navbarView() {
         );
         // Wait 1 second before reloading, so the user can see the login success message
         setTimeout(() => {
+          User.login(
+            document.getElementById("txtUsernameRegister").value,
+            document.getElementById("txtPasswordRegister").value
+          );
           location.reload();
         }, 1000);
       } catch (e) {
@@ -88,15 +95,15 @@ function navbarView() {
   document.querySelector("#frmLogin")?.addEventListener("submit", (event) => {
     event.preventDefault();
     try {
+      if(document.getElementById("txtUsername").value === "" || document.getElementById("txtPassword").value === ""){
+        throw Error("Todos os dados necessitam de ser preenchidos!");
+      }
       User.login(
         document.getElementById("txtUsername").value,
         document.getElementById("txtPassword").value
       );
       displayMessage("msgLogin", "Utilizador entrou com sucesso", "success");
-      // Wait 1 second before reloading, so the user can see the login success message
-      setTimeout(() => {
-        location.reload();
-      }, 1000);
+      
     } catch (e) {
       displayMessage("msgLogin", e.message, "danger");
     }

@@ -9,6 +9,7 @@ function catalogView() {
   document.getElementById("noticiaSubtitulo").value = noticia.subTitle;
   document.getElementById("noticiaDescricao").value = noticia.desc;
   document.getElementById("noticiaDate").value = noticia.date;
+  document.getElementById("noticiaImagem").value = noticia.image;
 
 
   document.querySelector("#editNewsForm").addEventListener("submit", (event) => {
