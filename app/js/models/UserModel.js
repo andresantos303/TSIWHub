@@ -35,7 +35,7 @@ export function login(username, password) {
   );
   if (user.username === "admin") {
     sessionStorage.setItem("loggedUser", JSON.stringify(user));
-    location.href = "adm/admin.html";
+    location.href = "admin.html";
   } else if (user) {
     sessionStorage.setItem("loggedUser", JSON.stringify(user));
     return true;
@@ -47,6 +47,11 @@ export function login(username, password) {
 // LOGOUT DO UTILIZADOR
 export function logout() {
   sessionStorage.removeItem("loggedUser");
+}
+
+export function removerUsers(id) {
+  users = users.filter((user) => user.id !== id);
+  localStorage.setItem("users", JSON.stringify(users));
 }
 
 // VERIFICA EXISTÊNCIA DE ALGUÉM AUTENTICADO
@@ -62,6 +67,10 @@ export function getUserLogged() {
 export function findUser(userId) {
   console.log(users, userId);
   return users.find((user) => user.id == userId);
+}
+
+export function findUsers() {
+  return users;
 }
 
 function getNextId() {

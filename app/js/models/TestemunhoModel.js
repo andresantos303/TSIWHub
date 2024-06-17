@@ -33,7 +33,7 @@ export function getCurrentTestemunho() {
   return testemunhos.find((testemunho) => testemunho.id == localStorage.getItem("testemunho"));
 }
 
-// DEFINIR A Noticia ATUAL (AQUELA QUE SERÁ VISTA NO DETALHE DA Noticia)
+// DEFINIR A testemunho ATUAL (AQUELA QUE SERÁ VISTA NO DETALHE DA Noticia)
 export function setCurrentTestemunho(id) {
   localStorage.setItem("testemunho", id);
 }
@@ -53,6 +53,7 @@ export function getTestemunhos(filterName = "", filterType = "", isSorted = fals
 
   return filteredTest.reverse();
 }
+
 
 function getNextId() {
   return testemunhos.length > 0 ? testemunhos.length + 1 : 1;
