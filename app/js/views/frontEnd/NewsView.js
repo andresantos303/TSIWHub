@@ -1,4 +1,4 @@
-import * as Noticia from "../models/NoticiaModel.js";
+import * as Noticia from "../../models/NoticiaModel.js";
 
 function noticiaView() {
   Noticia.init();

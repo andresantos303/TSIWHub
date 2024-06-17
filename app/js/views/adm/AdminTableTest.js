@@ -1,11 +1,7 @@
-import * as Testemunho from "../models/TestemunhoModel.js";
-import * as Noticia from "../models/NoticiaModel.js";
-import * as User from "../models/UserModel.js";
+import * as Testemunho from "../../models/TestemunhoModel.js";
 
 function catalogView() {
   Testemunho.init();
-  Noticia.init();
-  User.init();
 
   renderTableTestemunho(Testemunho.getTestemunhos());
 }
@@ -19,11 +15,12 @@ function renderTableTestemunho(testemunhos = []) {
   document.getElementById("tableTestemunho").innerHTML = result;
 
   // Editar FALTA FAZER
-  const btnsSeeMore = document.getElementsByClassName("btn-warning");
+  const btnsSeeMore = document.getElementsByClassName("editTest");
   for (const button of btnsSeeMore) {
     button.addEventListener("click", () => {
+      console.log(button.id)
       Testemunho.setCurrentTestemunho(button.id);
-      location.href = "testemunho.html";
+      location.href = "editTest.html";
     });
   }
 
@@ -49,8 +46,8 @@ function generateTableTestemunhos(testemunho) {
         <td><img src="${testemunho.image}" alt="${testemunho.name}" width="50"/></td>
         <td>${testemunho.subTitle}</td>
         <td><div class="desc-scroll">${testemunho.desc}</div></td>
-        <td><button type="button" id="${testemunho.id}" class="btn btn-warning testDel">Editar</button></td>
-        <td><button type="button" id="${testemunho.name}" class="btn btn-danger">Eliminar</button></td>
+        <td><button type="button" id="${testemunho.id}" class="btn btn-warning editTest">Editar</button></td>
+        <td><button type="button" id="${testemunho.name}" class="btn btn-danger testDel">Eliminar</button></td>
     </tr>
   `;
   return result;

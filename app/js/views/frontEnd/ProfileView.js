@@ -1,4 +1,4 @@
-import * as User from "../models/UserModel.js";
+import * as User from "../../models/UserModel.js";
 
 function userView() {
   User.init();
@@ -9,12 +9,12 @@ function userView() {
   document.getElementById("image").src = user.image;
 
 
-  // Ver mais
+  // Logout
   const btnsLogout = document.getElementById("logout");
   btnsLogout.addEventListener("click", () => {
-      User.logout();
-      location.href = "index.html";
-    });
+    User.logout();
+    location.href = "index.html";
+  });
 }
 
 userView();

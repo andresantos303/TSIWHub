@@ -1,4 +1,4 @@
-import * as User from "../models/UserModel.js";
+import * as User from "../../models/UserModel.js";
 
 function catalogView() {
   User.init();
@@ -15,11 +15,11 @@ function renderTableUsers(users = []) {
   document.getElementById("tableUtilizadores").innerHTML = result;
 
   // Editar FALTA FAZER
-  const btnsSeeMore = document.getElementsByClassName("btn-warning");
+  const btnsSeeMore = document.getElementsByClassName("editUser");
   for (const button of btnsSeeMore) {
     button.addEventListener("click", () => {
-      Testemunho.setCurrentTestemunho(button.id);
-      location.href = "testemunho.html";
+      User.setUser(button.id);
+      location.href = "editUser.html";
     });
   }
 
@@ -27,12 +27,19 @@ function renderTableUsers(users = []) {
   const btnsDelete = document.getElementsByClassName("userDel");
   for (const button of btnsDelete) {
     button.addEventListener("click", () => {
-      const userid = button.id;
-      User.removerUsers(userid);
-      alert(`Utilzador com o id ${userid} eliminado`);
+      const username = button.id;
+      User.removerUsers(username);
+      alert(`Utilzador com o nome ${username} eliminado`);
       location.reload();
     });
   }
+
+  // Logout
+  const btnsLogout = document.getElementById("logout");
+  btnsLogout.addEventListener("click", () => {
+    User.logout();
+    location.href = "index.html";
+  });
 }
 
 // GERAR CARTÃO COM todos os utilizadores
@@ -44,8 +51,8 @@ function generateTableUsers(user) {
         <td>${user.password}</td>
         <td><img src="${user.image}" width="50"/></td>
         <td>${user.type}</td>
-        <td><button type="button" id="${user.id}" class="btn btn-warning">Editar</button></td>
-        <td><button type="button" id="${user.id}" class="btn btn-danger userDel">Eliminar</button></td>
+        <td><button type="button" id="${user.id}" class="btn btn-warning editUser">Editar</button></td>
+        <td><button type="button" id="${user.username}" class="btn btn-danger userDel">Eliminar</button></td>
     </tr>
   `;
   return result;

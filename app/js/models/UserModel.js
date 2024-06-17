@@ -49,8 +49,8 @@ export function logout() {
   sessionStorage.removeItem("loggedUser");
 }
 
-export function removerUsers(id) {
-  users = users.filter((user) => user.id !== id);
+export function removerUsers(username) {
+  users = users.filter((user) => user.username !== username);
   localStorage.setItem("users", JSON.stringify(users));
 }
 
@@ -64,13 +64,31 @@ export function getUserLogged() {
   return JSON.parse(sessionStorage.getItem("loggedUser"));
 }
 
-export function findUser(userId) {
-  console.log(users, userId);
-  return users.find((user) => user.id == userId);
+export function setUser(userId) {
+  localStorage.setItem("user", userId);  
+}
+
+// OBTER o utilizador atual
+export function getCurrentUser() {
+  return users.find((user) => user.id == localStorage.getItem("user"));
 }
 
 export function findUsers() {
   return users;
+}
+
+// EDITAR Noticia
+export function editUser(id, updatedData) {
+  if (users.find((user) => user.id == id) == -1) {
+    throw Error(`A utilizador com o ID "${id}" não existe!`);
+  } else {
+    users[id-1].username = updatedData.username || users[id-1].username;
+    users[id-1].password = updatedData.password || users[id-1].password;
+    users[id-1].type = updatedData.type || users[id-1].type;
+    users[id-1].image = updatedData.image || users[id-1].image;
+    
+    localStorage.setItem("users", JSON.stringify(users));
+  }
 }
 
 function getNextId() {

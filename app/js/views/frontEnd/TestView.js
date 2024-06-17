@@ -1,4 +1,4 @@
-import * as Testemunho from "../models/TestemunhoModel.js";
+import * as Testemunho from "../../models/TestemunhoModel.js";
 
 function testemunhoView() {
   Testemunho.init();
