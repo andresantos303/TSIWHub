@@ -1,7 +1,7 @@
 ; (function ($) {
     "use strict";
 
-    var isMobile = {
+    const isMobile = {
         Android: function () {
             return navigator.userAgent.match(/Android/i);
         },
@@ -28,7 +28,7 @@
         },
     };
 
-    var themesflatTheme = {
+    const themesflatTheme = {
 
         // Main init function
         init: function () {
@@ -36,7 +36,7 @@
             this.events();
         },
 
-        // Define vars for caching
+        // Define consts for caching
         config: function () {
             this.config = {
                 $window: $(window),
@@ -46,7 +46,7 @@
 
         // Events
         events: function () {
-            var self = this;
+            const self = this;
 
             // Run on document ready
             self.config.$document.on('ready', function () {
@@ -67,10 +67,10 @@
 
         // Retina Logos
         retinaLogo: function () {
-            var retina = window.devicePixelRatio > 1 ? true : false;
-            var $logo = $('#site-logo img');
-            var $logo2 = $('#logo-footer img');
-            var $logo_retina = $logo.data('retina');
+            const retina = window.devicePixelRatio > 1 ? true : false;
+            const $logo = $('#site-logo img');
+            const $logo2 = $('#logo-footer img');
+            const $logo_retina = $logo.data('retina');
 
             if (retina && $logo_retina) {
                 $logo.attr({
@@ -92,11 +92,11 @@
     // Start things up
     themesflatTheme.init();
 
-    var ajaxContactForm = function () {
+    const ajaxContactForm = function () {
         $('#contactform,#commentform').each(function () {
             $(this).validate({
                 submitHandler: function (form) {
-                    var $form = $(form),
+                    const $form = $(form),
                         str = $form.serialize(),
                         loading = $('<div />', { 'class': 'loading' });
 
@@ -108,7 +108,7 @@
                             $form.find('.form-submit,comment-form').append(loading);
                         },
                         success: function (msg) {
-                            var result, cls;
+                            let result, cls;
                             if (msg === 'Success') {
                                 result = 'Message Sent Successfully To Email Administrator. ( You can change the email management a very easy way to get the message of customers in the user manual )';
                                 cls = 'msg-success';
@@ -139,11 +139,11 @@
 
 
     // Header Fixed
-    var headerFixed = function () {
+    const headerFixed = function () {
         if ($('body').hasClass('header-fixed')) {
-            var nav = $('#header_main');
+            const nav = $('#header_main');
             if (nav.length) {
-                var offsetTop = nav.offset().top,
+                const offsetTop = nav.offset().top,
                     injectSpace = $('<div />', {
                     }).insertAfter(nav);
                 $(window).on('load scroll', function () {
@@ -166,11 +166,11 @@
     };
 
     // Mobile Navigation
-    var mobileNav = function () {
-        var mobile = window.matchMedia("(max-width: 991px)");
-        var wrapMenu = $("#site-header-inner");
-        var navExtw = $(".nav-extend.active");
-        var navExt = $(".nav-extend.active").children();
+    const mobileNav = function () {
+        const mobile = window.matchMedia("(max-width: 991px)");
+        const wrapMenu = $("#site-header-inner");
+        const navExtw = $(".nav-extend.active");
+        const navExt = $(".nav-extend.active").children();
 
         responsivemenu(mobile);
 
@@ -216,7 +216,7 @@
         });
     };
 
-    var ajaxSubscribe = {
+    const ajaxSubscribe = {
         obj: {
             subscribeEmail: $('#subscribe-email'),
             subscribeButton: $('#subscribe-button'),
@@ -232,11 +232,11 @@
         },
 
         eventLoad: function () {
-            var objUse = ajaxSubscribe.obj;
+            const objUse = ajaxSubscribe.obj;
 
             $(objUse.subscribeButton).on('click', function () {
                 if (window.ajaxCalling) return;
-                var isMailchimp = objUse.dataMailchimp === 'true';
+                const isMailchimp = objUse.dataMailchimp === 'true';
 
                 if (isMailchimp) {
                     ajaxSubscribe.ajaxCall(objUse.mailChimpAction);
@@ -248,8 +248,8 @@
 
         ajaxCall: function (action) {
             window.ajaxCalling = true;
-            var objUse = ajaxSubscribe.obj;
-            var messageDiv = objUse.subscribeMsg.html('').hide();
+            const objUse = ajaxSubscribe.obj;
+            const messageDiv = objUse.subscribeMsg.html('').hide();
             $.ajax({
                 url: action,
                 type: 'POST',
@@ -298,7 +298,7 @@
         }
     };
 
-    var alertBox = function () {
+    const alertBox = function () {
         $(document).on('click', '.close', function (e) {
             $(this).closest('.flat-alert').remove();
             e.preventDefault();
@@ -306,8 +306,8 @@
 
     };
 
-    var flatAccordion = function () {
-        var args = { duration: 600 };
+    const flatAccordion = function () {
+        const args = { duration: 600 };
         $('.flat-toggle .toggle-title.active').siblings('.toggle-content').show();
 
         $('.flat-toggle.enable .toggle-title').on('click', function () {
@@ -331,13 +331,13 @@
         }); // accordion
     };
 
-    var tabs = function () {
+    const tabs = function () {
         $('.flat-tabs').each(function () {
             $(this).find('.content-tab').children().hide();
             $(this).find('.content-tab').children().first().show();
             $(this).find('.menu-tab').children('li').on('click', function () {
-                var liActive = $(this).index();
-                var contentActive = $(this).siblings().removeClass('active').parents('.flat-tabs').find('.content-tab').children().eq(liActive);
+                const liActive = $(this).index();
+                const contentActive = $(this).siblings().removeClass('active').parents('.flat-tabs').find('.content-tab').children().eq(liActive);
                 contentActive.addClass('active').fadeIn("slow");
                 contentActive.siblings().removeClass('active');
                 $(this).addClass('active').parents('.flat-tabs').find('.content-tab').children().eq(liActive).siblings().hide();
@@ -345,14 +345,14 @@
         });
     };
 
-    var tabs2 = function () {
+    const tabs2 = function () {
         $('.flat-tabs-style2').each(function () {
             $(this).find('.content-tab').children().hide();
             $(this).find('.content-tab').find('.content-inner.active').show();
             $(this).find('.menu-tab').children('li').on('click', function () {
-                var liActive = $(this).index();
+                const liActive = $(this).index();
                 console.log(liActive);
-                var contentActive = $(this).siblings().removeClass('active').parents('.flat-tabs-style2').find('.content-tab').children().eq(liActive);
+                const contentActive = $(this).siblings().removeClass('active').parents('.flat-tabs-style2').find('.content-tab').children().eq(liActive);
                 contentActive.toggleClass('active').fadeIn("slow");
                 contentActive.siblings().removeClass('active');
                 $(this).addClass('active').parents('.flat-tabs-style2').find('.content-tab').children().eq(liActive).siblings().hide();
@@ -363,7 +363,7 @@
         });
     };
 
-    var goTop = function () {
+    const goTop = function () {
         $(window).scroll(function () {
             if ($(this).scrollTop() > 800) {
                 $('#scroll-top').addClass('show');
@@ -378,7 +378,7 @@
         });
     };
 
-    var popupVideo = function () {
+    const popupVideo = function () {
         if ($().magnificPopup) {
             $(".popup-youtube").magnificPopup({
                 type: "iframe",
@@ -389,37 +389,37 @@
             });
         }
     };
-    var dropdown = function (id) {
-        var obj = $(id + '.dropdown');
-        var btn = obj.find('.btn-selector');
-        var dd = obj.find('ul');
-        var opt = dd.find('li');
+    const dropdown = function (id) {
+        const obj = $(id + '.dropdown');
+        const btn = obj.find('.btn-selector');
+        const dd = obj.find('ul');
+        const opt = dd.find('li');
         opt.on("click", function () {
             // dd.hide();
-            var txt = $(this).text();
+            const txt = $(this).text();
             opt.removeClass("active");
             $(this).toggleClass("active");
             btn.text(txt);
         });
     };
-    var no_link = function () {
+    const no_link = function () {
         $('a.nolink').on('click', function (e) {
             e.preventDefault();
         });
     }
 
 
-    var flatCounter = function () {
+    const flatCounter = function () {
         if ($(document.body).hasClass("counter-scroll")) {
-            var a = 0;
+            const a = 0;
             $(window).scroll(function () {
-                var oTop = $(".box").offset().top - window.innerHeight;
+                const oTop = $(".box").offset().top - window.innerHeight;
                 if (a == 0 && $(window).scrollTop() > oTop) {
                     if ($().countTo) {
                         $(".box")
                             .find(".number")
                             .each(function () {
-                                var to = $(this).data("to"),
+                                const to = $(this).data("to"),
                                     speed = $(this).data("speed");
 
                                 $(this).countTo({
@@ -434,7 +434,7 @@
         }
     };
 
-    var loadmore = function () {
+    const loadmore = function () {
         $(".fl-item").slice(0, 8).show();
 
         $(".loadmore").on("click", function (e) {
@@ -447,14 +447,14 @@
         });
     };
 
-    var parallax = function () {
+    const parallax = function () {
         if ($().parallax && isMobile.any() == null) {
             $(".parallax").parallax("50%", 0.2);
         }
     };
 
-    var flatAccordions2 = function () {
-        var args = { easing: 'easeOutExpo', duration: 400 };
+    const flatAccordions2 = function () {
+        const args = { easing: 'easeOutExpo', duration: 400 };
         $('.widget.active').find('.content-widget').show();
         $('.widget-title').on('click', function () {
             if (!$(this).parent().is('.active')) {
@@ -469,7 +469,7 @@
         });
     };
 
-    var Preloader = function () {
+    const Preloader = function () {
         setTimeout(function () {
             $(".preload").fadeOut("slow", function () {
                 $(this).remove();
