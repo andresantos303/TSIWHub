@@ -1,6 +1,6 @@
 import * as User from "../../models/UserModel.js";
 
-function catalogView() {
+function userView() {
   User.init();
 
   const utilizador = User.getCurrentUser();
@@ -13,6 +13,9 @@ function catalogView() {
   document.querySelector("#editUserForm").addEventListener("submit", (event) => {
     event.preventDefault();
     try {
+      if(document.getElementById("userPassword").value === "" || document.getElementById("userNome").value === "" || document.getElementById("userImagem").value === "" || document.getElementById("userTipo").value === ""){
+        throw Error("Todos os dados necessitam de ser preenchidos!");
+      }
       User.editUser(document.getElementById("userID").value, {
         username: document.getElementById("userNome").value,
         type: document.getElementById("userTipo").value,
@@ -30,4 +33,4 @@ function catalogView() {
   });
 }
 
-catalogView();
+userView();

@@ -143,13 +143,13 @@ function initdata() {
         username: "user",
         password: "esmad",
         type:"Professor",
-        image:"assets/images/data/image13.jpg",
+        image:"assets/images/data/image14.png",
       },
       {
         username: "admin",
         password: "esmad",
         type:"admin",
-        image:"",
+        image:"assets/images/data/image14.png",
       },
     ];
     users.forEach((user) => {

@@ -15,6 +15,9 @@ function catalogView() {
   document.querySelector("#editNewsForm").addEventListener("submit", (event) => {
     event.preventDefault();
     try {
+      if(document.getElementById("noticiaTitle").value === "" || document.getElementById("noticiaTipo").value === "" || document.getElementById("noticiaImagem").value === "" || document.getElementById("noticiaSubtitulo").value === "" || document.getElementById("noticiaDescricao").value === "" || document.getElementById("noticiaDate").value === ""){
+        throw Error("Todos os dados necessitam de ser preenchidos!");
+      }
       Noticia.editNews(document.getElementById("noticiaID").value, {
         name: document.getElementById("noticiaTitle").value,
         type: document.getElementById("noticiaTipo").value,

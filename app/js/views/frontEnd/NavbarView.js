@@ -78,7 +78,6 @@ function navbarView() {
           "Utilzador registado com sucesso!",
           "success"
         );
-        // Wait 1 second before reloading, so the user can see the login success message
         setTimeout(() => {
           User.login(
             document.getElementById("txtUsernameRegister").value,

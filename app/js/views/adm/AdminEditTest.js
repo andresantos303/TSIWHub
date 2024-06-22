@@ -13,8 +13,9 @@ function catalogView() {
   document.querySelector("#editTestemunhoForm").addEventListener("submit", (event) => {
     event.preventDefault();
     try {
-
-      console.log(document.getElementById("testemunhoImagem"))
+      if(document.getElementById("testemunhoNome").value === "" || document.getElementById("testemunhoTipo").value === "" || document.getElementById("testemunhoImagem").value === "" || document.getElementById("testemunhoSubtitulo").value === "" || document.getElementById("testemunhoDescricao").value === ""){
+        throw Error("Todos os dados necessitam de ser preenchidos!");
+      }
       Testemunho.editTestemunho(document.getElementById("testemunhoID").value, {
         name: document.getElementById("testemunhoNome").value,
         type: document.getElementById("testemunhoTipo").value,

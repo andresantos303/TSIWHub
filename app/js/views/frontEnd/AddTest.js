@@ -1,6 +1,6 @@
 import * as Testemunho from "../../models/TestemunhoModel.js";
 
-function addNewsView() {
+function addTestView() {
   Testemunho.init();
 
   document.querySelector("#addTestForm").addEventListener("submit", (event) => {
@@ -24,4 +24,4 @@ function addNewsView() {
   });
 }
 
-addNewsView();
+addTestView();

@@ -87,16 +87,17 @@ export function findUsers() {
 
 // EDITAR utilizador
 export function editUser(id, updatedData) {
-  if (users.find((user) => user.id == id) == false) {
-    throw Error(`A utilizador com o ID "${id}" não existe!`);
+  const userIndex = users.findIndex((user) => user.id == id);
+  if (userIndex === -1) {
+    throw Error(`O utilizador com o ID "${id}" não existe!`);
   } else {
-    users[id-1].username = updatedData.username || users[id-1].username;
-    users[id-1].type = updatedData.type || users[id-1].type;
-    users[id-1].image = updatedData.image || users[id-1].image;
-    users[id-1].password = updatedData.password || users[id-1].password;
-
+    const user = users[userIndex];
+    user.username = updatedData.username;
+    user.type = updatedData.type;
+    user.image = updatedData.image;
+    user.password = updatedData.password;
     localStorage.setItem("users", JSON.stringify(users));
-    sessionStorage.setItem("loggedUser",JSON.stringify(users[id-1]))
+    sessionStorage.setItem("loggedUser",JSON.stringify(user));
   }
 }
 
