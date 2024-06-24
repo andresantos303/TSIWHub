@@ -2,6 +2,10 @@ let testemunhos = [];
 
 // CARREGAR testemunhos DA LOCALSTORAGE
 export function init() {
+  if (document.URL.includes("index.html")) {
+    localStorage.setItem("search", "")
+    localStorage.setItem("category", "")
+  }
   if(localStorage.testemunhos) {
     const tempNews = JSON.parse(localStorage.testemunhos);
     for(let testemunho of tempNews) {
@@ -55,17 +59,13 @@ export function setCurrentTestemunho(id) {
 }
 
 // OBTER Testemunhos (COM SUPORTE A FILTROS E ORDENAÇÕES)
-export function getTestemunhos(filterName = "", filterType = "", isSorted = false) {
-  let filteredTest = testemunhos.filter(
+export function getTestemunhos(filterName = "", filterType = "") {
+  let filteredTest = testemunhos
+  filteredTest = testemunhos.filter(
     (testemunho) =>
-      (testemunho.name.toLowerCase().includes(filterName.toLowerCase()) || filterName === "") &&
-      (testemunho.genre === filterType || filterType === "")
+      (filterType === "" || testemunho.type === filterType) &&
+      (filterName === "" || testemunho.name.toLowerCase().includes(filterName.toLowerCase()))
   );
-
-  filteredTest = isSorted
-    ? filteredTest.sort((a, b) => a.title.localeCompare(b.name))
-    : filteredTest;
-
   return filteredTest.reverse();
 }
 

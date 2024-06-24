@@ -17,7 +17,6 @@
             <a class="navbar-brand" href="index.html">
                 <img src="assets/images/logo/logo1.png" alt="Admin" width="50" height="30">
             </a>
-            <button type="button" id="logout" class="btn btn-danger">Logout</button>
         </div>
     </nav>
 
@@ -27,19 +26,19 @@
 
         <form id="editUserForm">
             <div class="mb-3">
-                <label for="userID" class="form-label">ID</label>
+                <label for="userID" class="form-label">ID*</label>
                 <input type="text" class="form-control" id="userID" disabled>
             </div>
             <div class="mb-3">
-                <label for="userNome" class="form-label">Nome</label>
+                <label for="userNome" class="form-label">Nome*</label>
                 <input type="text" class="form-control" id="userNome">
             </div>
             <div class="mb-3">
-                <label for="userPassword" class="form-label">Password</label>
+                <label for="userPassword" class="form-label">Password*</label>
                 <input type="text" class="form-control" id="userPassword">
             </div>
             <div class="mb-3">
-                <label for="userTipo" class="form-label">Tipo</label>
+                <label for="userTipo" class="form-label">Tipo*</label>
                 <select class="form-select" id="userTipo">
                     <option value="" disabled selected>Selecione uma das opções</option>
                     <option value="Aluno/a">Aluno/a</option>
@@ -49,9 +48,10 @@
                 </select>
             </div>
             <div class="mb-3">
-                <label for="userImagem" class="form-label">Imagem</label>
+                <label for="userImagem" class="form-label">Imagem*</label>
                 <input type="text" class="form-control" id="userImagem">
             </div>
+            <p>*Campos Obrigatórios</p>
             <button type="submit" class="btn btn-primary">Guardar</button>
             <a href="admin.html" class="btn btn-secondary">Cancelar</a>
         </form>

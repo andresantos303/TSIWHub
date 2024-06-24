@@ -42,25 +42,25 @@
         <section class="tf-section tf-item">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-4">
-                        <div class="widget widget-search" data-aos="fade-in" data-aos-duration="800">
-                            <form action="#">
-                                <input type="text" id="search" placeholder="Procurar" required="">
-                                <button id="btn" preventDefault="on"><i class="fal fa-search"></i></button>
-                            </form>
-                        </div>
-                    </div>
-                    <div class="col-md-8 z-index">
-                        <div class="seclect-box" data-aos="fade-in" data-aos-duration="800">
-                            <div class="dropdown selector-drop">
-                                <select class="form-control" id="category">
-                                    <option value="">Todas Categorias</option>
-                                    <option value="Projetos">Projetos</option>
-                                    <option value="Atividades">Atividades</option>
-                                </select>
+                        <div class="col-md-4">
+                            <div class="widget widget-search" data-aos="fade-in" data-aos-duration="800">
+                                <form>
+                                    <input type="text" id="search" placeholder="Procurar" required="">
+                                    <button id="btn" preventDefault="on"><i class="fal fa-search"></i></button>
+                                </form>
                             </div>
                         </div>
-                    </div>
+                        <div class="col-md-8 z-index">
+                            <div class="seclect-box" data-aos="fade-in" data-aos-duration="800">
+                                <div class="dropdown selector-drop">
+                                    <select class="dropdown" id="category">
+                                        <option value="">Todas Categorias</option>
+                                        <option value="Projetos">Projetos</option>
+                                        <option value="Atividades">Atividades</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
                     <div class="col-md-12">
                         <div class="wrap-fx ml30-fx mt-40" data-aos="fade-up" id="myCatalog" data-aos-duration="800">
                             <!-- Notícias -->
@@ -84,98 +84,98 @@
 
     <!-- Modal de Register -->
     <div class="modal fade popup" id="mdlRegister" tabindex="-1" aria-labelledby="modalLabelRegister"
-    aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="header-popup">
-                <h5>Registo</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="header-popup">
+                    <h5>Registo</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form id="frmRegister">
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="txtUsernameRegister">Nome de Utilizador:</label>
+                            <input type="text" class="form-control" id="txtUsernameRegister"
+                                placeholder="Introduza o nome de utilizador" />
+                        </div>
+                        <div class="form-group">
+                            <label for="txtPasswordRegister">Palavra-passe:</label>
+                            <input type="password" class="form-control" id="txtPasswordRegister"
+                                placeholder="Introduza a palavra-passe" />
+                        </div>
+                        <div class="form-group">
+                            <label for="txtPasswordRegister2">Confirmar Palavra-passe:</label>
+                            <input type="password" class="form-control" id="txtPasswordRegister2"
+                                placeholder="Confirme a palavra-passe" />
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-secondary">Registar</button>
+                        <button type="button" class="btn btn-primary"
+                            style="background-color: #e88726; border-color:#e88726" data-dismiss="modal"
+                            data-toggle="modal" data-target="#mdlLogin">Login
+                        </button>
+                        <button type="button" class="btn btn-primary"
+                            style="background-color: #e88726; border-color:#e88726" data-dismiss="modal">Fechar
+                        </button>
+                    </div>
+                </form>
+                <div class="row">
+                    <div class="col">
+                        <div id="msgRegister"></div>
+                    </div>
+                </div>
             </div>
-            <form id="frmRegister">
-                <div class="modal-body">
-                    <div class="form-group">
-                        <label for="txtUsernameRegister">Nome de Utilizador:</label>
-                        <input type="text" class="form-control" id="txtUsernameRegister"
-                            placeholder="Introduza o nome de utilizador" />
-                    </div>
-                    <div class="form-group">
-                        <label for="txtPasswordRegister">Palavra-passe:</label>
-                        <input type="password" class="form-control" id="txtPasswordRegister"
-                            placeholder="Introduza a palavra-passe" />
-                    </div>
-                    <div class="form-group">
-                        <label for="txtPasswordRegister2">Confirmar Palavra-passe:</label>
-                        <input type="password" class="form-control" id="txtPasswordRegister2"
-                            placeholder="Confirme a palavra-passe" />
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-secondary">Registar</button>
-                    <button type="button" class="btn btn-primary"
-                        style="background-color: #e88726; border-color:#e88726" data-dismiss="modal"
-                        data-toggle="modal" data-target="#mdlLogin">Login
-                    </button>
-                    <button type="button" class="btn btn-primary"
-                        style="background-color: #e88726; border-color:#e88726" data-dismiss="modal">Fechar
+
+        </div>
+    </div>
+
+    <!-- Modal de login -->
+    <div class="modal fade popup" id="mdlLogin" tabindex="-1" aria-labelledby="modalLabelLogin" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="header-popup">
+                    <h5>Login</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-            </form>
-            <div class="row">
-                <div class="col">
-                    <div id="msgRegister"></div>
+                <form id="frmLogin">
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="txtUsername">Nome de Utilizador:</label>
+                            <input type="text" class="form-control" id="txtUsername"
+                                placeholder="Introduza o nome de utilizador" />
+                        </div>
+                        <div class="form-group">
+                            <label for="txtPassword">Palavra-passe:</label>
+                            <input type="password" class="form-control" id="txtPassword"
+                                placeholder="Introduza a palavra-passe" />
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-secondary">Login</button>
+                        <button type="button" class="btn btn-primary"
+                            style="background-color: #e88726; border-color:#e88726" data-dismiss="modal"
+                            data-toggle="modal" data-target="#mdlRegister">Registar
+                        </button>
+                        <button type="button" class="btn btn-primary"
+                            style="background-color: #e88726; border-color:#e88726" data-dismiss="modal">Fechar
+                        </button>
+                    </div>
+                </form>
+                <div class="row">
+                    <div class="col">
+                        <div id="msgLogin"></div>
+                    </div>
                 </div>
             </div>
         </div>
-
     </div>
-</div>
 
-<!-- Modal de login -->
-<div class="modal fade popup" id="mdlLogin" tabindex="-1" aria-labelledby="modalLabelLogin" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="header-popup">
-                <h5>Login</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <form id="frmLogin">
-                <div class="modal-body">
-                    <div class="form-group">
-                        <label for="txtUsername">Nome de Utilizador:</label>
-                        <input type="text" class="form-control" id="txtUsername"
-                            placeholder="Introduza o nome de utilizador" />
-                    </div>
-                    <div class="form-group">
-                        <label for="txtPassword">Palavra-passe:</label>
-                        <input type="password" class="form-control" id="txtPassword"
-                            placeholder="Introduza a palavra-passe" />
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-secondary">Login</button>
-                    <button type="button" class="btn btn-primary"
-                        style="background-color: #e88726; border-color:#e88726" data-dismiss="modal"
-                        data-toggle="modal" data-target="#mdlRegister">Registar
-                    </button>
-                    <button type="button" class="btn btn-primary"
-                        style="background-color: #e88726; border-color:#e88726" data-dismiss="modal">Fechar
-                    </button>
-                </div>
-            </form>
-            <div class="row">
-                <div class="col">
-                    <div id="msgLogin"></div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Modal -->
+    <!-- Modal -->
 
     <script type="module" src="app/js/views/frontEnd/NewsCatalogView.js"></script>
     <script type="module" src="app/js/views/frontEnd/NavbarView.js"></script>
@@ -189,7 +189,7 @@
     <script src="app/js/extra/jquery.easing.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="app/js/extra/jquery.magnific-popup.min.js"></script>
-    <script src="app/js/extra/jquery-validate.js"></script> 
+    <script src="app/js/extra/jquery-validate.js"></script>
 </body>
 
 </html>

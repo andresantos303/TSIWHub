@@ -2,6 +2,10 @@ let noticias = [];
 
 // CARREGAR NOTICIAS DA LOCALSTORAGE
 export function init() {
+  if (document.URL.includes("index.html")) {
+    localStorage.setItem("search", "")
+    localStorage.setItem("category", "")
+  }
   if (localStorage.noticias) {
     const tempNews = JSON.parse(localStorage.noticias);
     for (let noticia of tempNews) {
@@ -27,13 +31,13 @@ export function editNews(id, updatedData) {
   if (noticias.find((noticia) => noticia.id == id) == -1) {
     throw Error(`A testemunho com o ID "${id}" não existe!`);
   } else {
-    noticias[id-1].title = updatedData.title || noticias[id-1].title;
-    noticias[id-1].genre = updatedData.genre || noticias[id-1].genre;
-    noticias[id-1].image = updatedData.image || noticias[id-1].image;
-    noticias[id-1].subTitle = updatedData.subTitle || noticias[id-1].subTitle;
-    noticias[id-1].desc = updatedData.desc || noticias[id-1].desc;
-    noticias[id-1].date = updatedData.date || noticias[id-1].date;
-    
+    noticias[id - 1].title = updatedData.title || noticias[id - 1].title;
+    noticias[id - 1].genre = updatedData.genre || noticias[id - 1].genre;
+    noticias[id - 1].image = updatedData.image || noticias[id - 1].image;
+    noticias[id - 1].subTitle = updatedData.subTitle || noticias[id - 1].subTitle;
+    noticias[id - 1].desc = updatedData.desc || noticias[id - 1].desc;
+    noticias[id - 1].date = updatedData.date || noticias[id - 1].date;
+
     localStorage.setItem("noticias", JSON.stringify(noticias));
   }
 }

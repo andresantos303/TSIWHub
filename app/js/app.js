@@ -92,52 +92,6 @@
     // Start things up
     themesflatTheme.init();
 
-    const ajaxContactForm = function () {
-        $('#contactform,#commentform').each(function () {
-            $(this).validate({
-                submitHandler: function (form) {
-                    const $form = $(form),
-                        str = $form.serialize(),
-                        loading = $('<div />', { 'class': 'loading' });
-
-                    $.ajax({
-                        type: "POST",
-                        url: $form.attr('action'),
-                        data: str,
-                        beforeSend: function () {
-                            $form.find('.form-submit,comment-form').append(loading);
-                        },
-                        success: function (msg) {
-                            let result, cls;
-                            if (msg === 'Success') {
-                                result = 'Message Sent Successfully To Email Administrator. ( You can change the email management a very easy way to get the message of customers in the user manual )';
-                                cls = 'msg-success';
-                            } else {
-                                result = 'Error sending email.';
-                                cls = 'msg-error';
-                            }
-
-                            $form.prepend(
-                                $('<div />', {
-                                    'class': 'flat-alert ' + cls,
-                                    'text': result
-                                }).append(
-                                    $('<a class="close" href="#"><i class="fa fa-close"></i></a>')
-                                )
-                            );
-
-                            $form.find(':input').not('.submit').val('');
-                        },
-                        complete: function (xhr, status, error_thrown) {
-                            $form.find('.loading').remove();
-                        }
-                    });
-                }
-            });
-        }); // each contactform
-    };
-
-
     // Header Fixed
     const headerFixed = function () {
         if ($('body').hasClass('header-fixed')) {
@@ -216,87 +170,6 @@
         });
     };
 
-    const ajaxSubscribe = {
-        obj: {
-            subscribeEmail: $('#subscribe-email'),
-            subscribeButton: $('#subscribe-button'),
-            subscribeMsg: $('#subscribe-msg'),
-            subscribeContent: $("#subscribe-content"),
-            dataMailchimp: $('#subscribe-form').attr('data-mailchimp'),
-            success_message: '<div class="notification_ok">Thank you for joining our mailing list! Please check your email for a confirmation link.</div>',
-            failure_message: '<div class="notification_error">Error! <strong>There was a problem processing your submission.</strong></div>',
-            noticeError: '<div class="notification_error">{msg}</div>',
-            noticeInfo: '<div class="notification_error">{msg}</div>',
-            basicAction: 'mail/subscribe.php',
-            mailChimpAction: 'mail/subscribe-mailchimp.php'
-        },
-
-        eventLoad: function () {
-            const objUse = ajaxSubscribe.obj;
-
-            $(objUse.subscribeButton).on('click', function () {
-                if (window.ajaxCalling) return;
-                const isMailchimp = objUse.dataMailchimp === 'true';
-
-                if (isMailchimp) {
-                    ajaxSubscribe.ajaxCall(objUse.mailChimpAction);
-                } else {
-                    ajaxSubscribe.ajaxCall(objUse.basicAction);
-                }
-            });
-        },
-
-        ajaxCall: function (action) {
-            window.ajaxCalling = true;
-            const objUse = ajaxSubscribe.obj;
-            const messageDiv = objUse.subscribeMsg.html('').hide();
-            $.ajax({
-                url: action,
-                type: 'POST',
-                dataType: 'json',
-                data: {
-                    subscribeEmail: objUse.subscribeEmail.val()
-                },
-                success: function (responseData, textStatus, jqXHR) {
-                    if (responseData.status) {
-                        objUse.subscribeContent.fadeOut(500, function () {
-                            messageDiv.html(objUse.success_message).fadeIn(500);
-                        });
-                    } else {
-                        switch (responseData.msg) {
-                            case "email-required":
-                                messageDiv.html(objUse.noticeError.replace('{msg}', 'Error! <strong>Email is required.</strong>'));
-                                break;
-                            case "email-err":
-                                messageDiv.html(objUse.noticeError.replace('{msg}', 'Error! <strong>Email invalid.</strong>'));
-                                break;
-                            case "duplicate":
-                                messageDiv.html(objUse.noticeError.replace('{msg}', 'Error! <strong>Email is duplicate.</strong>'));
-                                break;
-                            case "filewrite":
-                                messageDiv.html(objUse.noticeInfo.replace('{msg}', 'Error! <strong>Mail list file is open.</strong>'));
-                                break;
-                            case "undefined":
-                                messageDiv.html(objUse.noticeInfo.replace('{msg}', 'Error! <strong>undefined error.</strong>'));
-                                break;
-                            case "api-error":
-                                objUse.subscribeContent.fadeOut(500, function () {
-                                    messageDiv.html(objUse.failure_message);
-                                });
-                        }
-                        messageDiv.fadeIn(500);
-                    }
-                },
-                error: function (jqXHR, textStatus, errorThrown) {
-                    alert('Connection error');
-                },
-                complete: function (data) {
-                    window.ajaxCalling = false;
-                    alert('Thank you for joining our mailing list!');
-                }
-            });
-        }
-    };
 
     const alertBox = function () {
         $(document).on('click', '.close', function (e) {
@@ -331,38 +204,6 @@
         }); // accordion
     };
 
-    const tabs = function () {
-        $('.flat-tabs').each(function () {
-            $(this).find('.content-tab').children().hide();
-            $(this).find('.content-tab').children().first().show();
-            $(this).find('.menu-tab').children('li').on('click', function () {
-                const liActive = $(this).index();
-                const contentActive = $(this).siblings().removeClass('active').parents('.flat-tabs').find('.content-tab').children().eq(liActive);
-                contentActive.addClass('active').fadeIn("slow");
-                contentActive.siblings().removeClass('active');
-                $(this).addClass('active').parents('.flat-tabs').find('.content-tab').children().eq(liActive).siblings().hide();
-            });
-        });
-    };
-
-    const tabs2 = function () {
-        $('.flat-tabs-style2').each(function () {
-            $(this).find('.content-tab').children().hide();
-            $(this).find('.content-tab').find('.content-inner.active').show();
-            $(this).find('.menu-tab').children('li').on('click', function () {
-                const liActive = $(this).index();
-                console.log(liActive);
-                const contentActive = $(this).siblings().removeClass('active').parents('.flat-tabs-style2').find('.content-tab').children().eq(liActive);
-                contentActive.toggleClass('active').fadeIn("slow");
-                contentActive.siblings().removeClass('active');
-                $(this).addClass('active').parents('.flat-tabs-style2').find('.content-tab').children().eq(liActive).siblings().hide();
-            });
-            $(this).find('.content-tab').find('.content-inner').find('.btn-delete').on('click', function () {
-                $('.content-tab').find('.content-inner').hide();
-            });
-        });
-    };
-
     const goTop = function () {
         $(window).scroll(function () {
             if ($(this).scrollTop() > 800) {
@@ -378,61 +219,6 @@
         });
     };
 
-    const popupVideo = function () {
-        if ($().magnificPopup) {
-            $(".popup-youtube").magnificPopup({
-                type: "iframe",
-                mainClass: "mfp-fade",
-                removalDelay: 160,
-                preloader: false,
-                fixedContentPos: false,
-            });
-        }
-    };
-    const dropdown = function (id) {
-        const obj = $(id + '.dropdown');
-        const btn = obj.find('.btn-selector');
-        const dd = obj.find('ul');
-        const opt = dd.find('li');
-        opt.on("click", function () {
-            // dd.hide();
-            const txt = $(this).text();
-            opt.removeClass("active");
-            $(this).toggleClass("active");
-            btn.text(txt);
-        });
-    };
-    const no_link = function () {
-        $('a.nolink').on('click', function (e) {
-            e.preventDefault();
-        });
-    }
-
-
-    const flatCounter = function () {
-        if ($(document.body).hasClass("counter-scroll")) {
-            const a = 0;
-            $(window).scroll(function () {
-                const oTop = $(".box").offset().top - window.innerHeight;
-                if (a == 0 && $(window).scrollTop() > oTop) {
-                    if ($().countTo) {
-                        $(".box")
-                            .find(".number")
-                            .each(function () {
-                                const to = $(this).data("to"),
-                                    speed = $(this).data("speed");
-
-                                $(this).countTo({
-                                    to: to,
-                                    speed: speed,
-                                });
-                            });
-                    }
-                    a = 1;
-                }
-            });
-        }
-    };
 
     const loadmore = function () {
         $(".fl-item").slice(0, 8).show();
@@ -481,23 +267,9 @@
     $(function () {
         headerFixed();
         mobileNav();
-        ajaxSubscribe.eventLoad();
-        ajaxContactForm();
         alertBox();
-        tabs();
-        tabs2();
         goTop();
         AOS.init();
-        flatAccordion();
-        flatAccordions2();
-        popupVideo();
-        dropdown('#artworks');
-        dropdown('#category');
-        no_link();
-        flatCounter();
-        $(window).on("load resize", function () {
-            parallax();
-        });
         loadmore();
         Preloader();
     });

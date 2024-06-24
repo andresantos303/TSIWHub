@@ -17,7 +17,6 @@
             <a class="navbar-brand" href="index.html">
                 <img src="assets/images/logo/logo1.png" alt="Admin" width="50" height="30">
             </a>
-            <button type="button" id="logout" class="btn btn-danger">Logout</button>
         </div>
     </nav>
 
@@ -27,7 +26,7 @@
 
         <form id="editNewsForm">
             <div class="mb-3">
-                <label for="noticiaID" class="form-label">ID</label>
+                <label for="noticiaID" class="form-label">ID*</label>
                 <input type="text" class="form-control" id="noticiaID" disabled>
             </div>
             <div class="mb-3">
@@ -35,11 +34,11 @@
                 <input type="text" class="form-control" id="noticiaTitle">
             </div>
             <div class="mb-3">
-                <label for="noticiaDate" class="form-label">Data</label>
+                <label for="noticiaDate" class="form-label">Data*</label>
                 <input type="text" class="form-control" id="noticiaDate">
             </div>
             <div class="mb-3">
-                <label for="noticiaTipo" class="form-label">Género</label>
+                <label for="noticiaTipo" class="form-label">Género*</label>
                 <select class="form-select" id="noticiaTipo">
                     <option value="" disabled selected>Selecione uma das opções</option>
                     <option value="Projetos">Projetos</option>
@@ -47,17 +46,18 @@
                 </select>
             </div>
             <div class="mb-3">
-                <label for="noticiaImagem" class="form-label">Imagem</label>
+                <label for="noticiaImagem" class="form-label">Imagem*</label>
                 <input type="text" class="form-control" id="noticiaImagem">
             </div>
             <div class="mb-3">
-                <label for="noticiaSubtitulo" class="form-label">Subtitulo</label>
+                <label for="noticiaSubtitulo" class="form-label">Subtítulo*</label>
                 <input type="text" class="form-control" id="noticiaSubtitulo">
             </div>
             <div class="mb-3">
-                <label for="noticiaDescricao" class="form-label">Descrição</label>
+                <label for="noticiaDescricao" class="form-label">Descrição*</label>
                 <textarea class="form-control desc-scroll" style="height: 300px;" id="noticiaDescricao"></textarea>
             </div>
+            <p>*Campos Obrigatórios</p>
             <button type="submit" class="btn btn-primary">Guardar</button>
             <a href="admin.html" class="btn btn-secondary">Cancelar</a>
         </form>

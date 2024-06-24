@@ -3,17 +3,17 @@ import * as Testemunho from "../../models/TestemunhoModel.js";
 function catalogView() {
   Testemunho.init();
 
-  renderCatalog(Testemunho.getTestemunhos());
+  renderCatalog(Testemunho.getTestemunhos(localStorage.getItem("search"), localStorage.getItem("category")));
 
   // CLICAR NO BOTÃO FILTRAR
-  /* document.getElementById("category").addEventListener("click", () => {
-    renderCatalog(
-      Testemunho.getTestemunhos(
-        document.querySelector("#txtTitle").value,
-        document.querySelector("#category").value
-      )
-    );
-  }); */
+  document.getElementById("btn").addEventListener("click", () => {
+    localStorage.setItem("search", document.getElementById("search").value);
+    location.reload()
+  });
+  document.getElementById("category").addEventListener("change", () => {
+    localStorage.setItem("category", document.getElementById("category").value);
+    location.reload()
+  });
 }
 
 // EXIBIR O CATÁLOGO DE Testemunhos HomePage
@@ -23,6 +23,8 @@ function renderCatalog(testemunhos = []) {
     result += generateCard(testemunho);
   }
   document.getElementById("testeCatelog").innerHTML = result;
+  document.getElementById("category").value = localStorage.getItem("category")
+  document.getElementById("search").value = localStorage.getItem("search")
 
   // Ver mais
   const btnsSeeMore = document.getElementsByClassName("viewMore");

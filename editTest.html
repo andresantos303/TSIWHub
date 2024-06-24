@@ -17,7 +17,6 @@
             <a class="navbar-brand" href="index.html">
                 <img src="assets/images/logo/logo1.png" alt="Admin" width="50" height="30">
             </a>
-            <button type="button" id="logout" class="btn btn-danger">Logout</button>
         </div>
     </nav>
 
@@ -27,15 +26,15 @@
 
         <form id="editTestemunhoForm">
             <div class="mb-3">
-                <label for="testemunhoID" class="form-label">ID</label>
+                <label for="testemunhoID" class="form-label">ID*</label>
                 <input type="text" class="form-control" id="testemunhoID" disabled>
             </div>
             <div class="mb-3">
-                <label for="testemunhoNome" class="form-label">Nome</label>
+                <label for="testemunhoNome" class="form-label">Nome*</label>
                 <input type="text" class="form-control" id="testemunhoNome">
             </div>
             <div class="mb-3">
-                <label for="testemunhoTipo" class="form-label">Tipo</label>
+                <label for="testemunhoTipo" class="form-label">Tipo*</label>
                 <select class="form-select" id="testemunhoTipo">
                     <option value="" disabled selected>Selecione uma das opções</option>
                     <option value="Aluno/a">Aluno/a</option>
@@ -45,17 +44,18 @@
                 </select>
             </div>
             <div class="mb-3">
-                <label for="testemunhoImagem" class="form-label">Imagem</label>
+                <label for="testemunhoImagem" class="form-label">Imagem*</label>
                 <input type="text" class="form-control" id="testemunhoImagem">
             </div>
             <div class="mb-3">
-                <label for="testemunhoSubtitulo" class="form-label">Subtitulo</label>
+                <label for="testemunhoSubtitulo" class="form-label">Subtítulo*</label>
                 <input type="text" class="form-control" id="testemunhoSubtitulo">
             </div>
             <div class="mb-3">
-                <label for="testemunhoDescricao" class="form-label">Descrição</label>
+                <label for="testemunhoDescricao" class="form-label">Descrição*</label>
                 <textarea class="form-control desc-scroll" style="height: 300px;" id="testemunhoDescricao"></textarea>
             </div>
+            <p>*Campos Obrigatórios</p>
             <button type="submit" class="btn btn-primary">Guardar</button>
             <a href="admin.html" class="btn btn-secondary">Cancelar</a>
         </form>
